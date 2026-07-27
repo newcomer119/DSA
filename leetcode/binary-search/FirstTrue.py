@@ -4,17 +4,30 @@
 
 
 def find_boundary(arr: list[bool]) -> int:
-    left, right = 0 ,len(arr) - 1
-    boundary_index = -1
+    # left, right = 0 ,len(arr) - 1
+    # boundary_index = -1
 
-    while left <= right:
-        mid = (left + right) // 2
+    # while left <= right:
+    #     mid = (left + right) // 2
+    #     if arr[mid]:
+    #         boundary_index = mid
+    #         right = mid- 1
+    #     else:
+    #         left = mid + 1
+    # return boundary_index\
+
+    l, r = 0, len(arr) - 1
+    ans = -1
+    while l <= r:
+        mid = (l + r) // 2
         if arr[mid]:
-            boundary_index = mid
-            right = mid- 1
-        else:
-            left = mid + 1
-    return boundary_index
+            ans = mid
+            r = mid - 1
+
+        else : 
+            l = mid + 1
+
+    return ans
 
 
 # --- Daily tests ---

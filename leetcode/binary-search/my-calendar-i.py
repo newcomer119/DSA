@@ -1,32 +1,21 @@
 # You are implementing a program to use as your calendar. We can add a new event if adding the event will not cause a double booking.
-
 # A double booking happens when two events have some non-empty intersection (i.e., some moment is common to both events.).
-
 # The event can be represented as a pair of integers startTime and endTime that represents a booking on the half-open interval [startTime, endTime), the range of real numbers x such that startTime <= x < endTime.
-
 # Implement the MyCalendar class:
-
 # MyCalendar() Initializes the calendar object.
 # boolean book(int startTime, int endTime) Returns true if the event can be added to the calendar successfully without causing a double booking. Otherwise, return false and do not add the event to the calendar.
- 
-
 # Example 1:
-
 # Input
 # ["MyCalendar", "book", "book", "book"]
 # [[], [10, 20], [15, 25], [20, 30]]
 # Output
 # [null, true, false, true]
-
 # Explanation
 # MyCalendar myCalendar = new MyCalendar();
 # myCalendar.book(10, 20); // return True
 # myCalendar.book(15, 25); // return False, It can not be booked because time 15 is already booked by another event.
 # myCalendar.book(20, 30); // return True, The event can be booked, as the first event takes every time less than 20, but not including 20.
- 
-
 # Constraints:
-
 # 0 <= start < end <= 109
 # At most 1000 calls will be made to book.
 
@@ -38,21 +27,43 @@ class MyCalendar:
         self.calendar = []
 
     def book(self, start: int, end: int) -> bool:
-        left= 0
-        right = len(self.calendar) - 1
+        # left= 0
+        # right = len(self.calendar) - 1
+        # idx = len(self.calendar)
+        # while left <= right : 
+        #     mid = (left + right) // 2
+        #     if self.calendar[mid][0] > start:
+        #         idx = mid
+        #         right = mid - 1
+        #     else:
+        #         left = mid + 1
+
+        # if (idx > 0 and self.calendar[idx-1][1] > start) or (idx < len(self.calendar) and self.calendar[idx][0] < end):
+        #     return False
+        # self.calendar.insert(idx, (start, end))
+        # return True
+
+        left,right = 0, len(self.calendar) - 1
         idx = len(self.calendar)
-        while left <= right : 
+
+        while left <= right:
             mid = (left + right) // 2
             if self.calendar[mid][0] > start:
                 idx = mid
                 right = mid - 1
+
             else:
-                left = mid + 1
+                l = mid + 1
+
+
+        # we are checking if there is an interval before the spot we want to insert and if previous interval end before new one start  or 
+        # we are checking that a new interval is currently sitting at end position and next interval starts before this one ends.
 
         if (idx > 0 and self.calendar[idx-1][1] > start) or (idx < len(self.calendar) and self.calendar[idx][0] < end):
             return False
-        self.calendar.insert(idx, (start, end))
-        return True
+
+        self.calendar.insert(idx, (start,end))
+        return True 
 
 
 # --- Daily tests ---

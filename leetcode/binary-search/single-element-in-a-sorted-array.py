@@ -7,15 +7,11 @@
  
 
 # Example 1:
-
 # Input: nums = [1,1,2,3,3,4,4,8,8]
 # Output: 2
 # Example 2:
-
 # Input: nums = [3,3,7,7,10,11,11]
-# Output: 10
- 
-
+# Output: 10 
 # Constraints:
 
 # 1 <= nums.length <= 105
@@ -23,24 +19,48 @@
 
 
 def singleNonDuplicate(nums):
-    def to_the_left(idx):
-        if (idx == len(nums)-1):
+
+    def to_left(idx):
+        if (idx == len(nums) - 1):
             return True
-        elif (idx % 2):   # odd
+
+        elif (idx % 2):
             return nums[idx] != nums[idx-1]
-        else:             # even
+        else : 
             return nums[idx] != nums[idx+1]
 
-    left, right, ans = 0, len(nums)-1, -1
+    left,right = 0, len(nums) - 1
+    ans = -1
     while left <= right:
         mid = (left + right) // 2
-        if to_the_left(mid):
+        if to_left(mid):
             ans = mid
             right = mid - 1
-        else:
-            left = mid + 1
 
+        else : 
+            left = mid + 1
     return nums[ans]
+
+
+
+    # def to_the_left(idx):
+    #     if (idx == len(nums)-1):
+    #         return True
+    #     elif (idx % 2):   # odd
+    #         return nums[idx] != nums[idx-1]
+    #     else:             # even
+    #         return nums[idx] != nums[idx+1]
+
+    # left, right, ans = 0, len(nums)-1, -1
+    # while left <= right:
+    #     mid = (left + right) // 2
+    #     if to_the_left(mid):
+    #         ans = mid
+    #         right = mid - 1
+    #     else:
+    #         left = mid + 1
+
+    # return nums[ans]
 
 
 # --- Daily tests ---

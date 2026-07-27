@@ -8,7 +8,6 @@ from typing import List
 # For example, s = "||**||**|*", and a query [3, 8] denotes the substring "*||**|". The number of plates between candles in this substring is 2, as each of the two plates has at least one candle in the substring to its left and right.
 # Return an integer array answer where answer[i] is the answer to the ith query.
 
- 
 
 # Example 1:
 
@@ -19,7 +18,6 @@ from typing import List
 # - queries[0] has two plates between candles.
 # - queries[1] has three plates between candles.
 # Example 2:
-
 # ex-2
 # Input: s = "***|**|*****|**||**|*", queries = [[1,17],[4,5],[14,17],[5,11],[15,16]]
 # Output: [9,0,0,0,0]
@@ -38,7 +36,7 @@ class Solution:
         res = []
         for qleft, qright in queries:
             left_pos, right_pos = -1, -1
-            
+
             # 1. Find the first candle index >= qleft
             left, right = 0, len(candles) - 1
             while left <= right:
@@ -48,7 +46,7 @@ class Solution:
                     right = mid - 1
                 else:
                     left = mid + 1
-            
+
             # 2. Find the last candle index <= qright
             left, right = 0, len(candles) - 1
             while left <= right:
@@ -73,14 +71,15 @@ if __name__ == "__main__":
     sol = Solution()
     TESTS = [
         ("**|**|***|", [[2, 5], [5, 9]], [2, 3]),
-        ("***|**|*****|**||**|*", [[1, 17], [4, 5], [14, 17], [5, 11], [15, 16]], [9, 0, 0, 0, 0]),
+        ("***|**|*****|**||**|*", [[1, 17], [4, 5],
+         [14, 17], [5, 11], [15, 16]], [9, 0, 0, 0, 0]),
         ("*|***", [[0, 4]], [0]),
         ("*|", [[0, 1]], [0]),
     ]
     passed = 0
-    for name, s, queries, expected in TESTS:
+    for s, queries, expected in TESTS:
         got = sol.platesBetweenCandles(s, queries)
         ok = got == expected
         passed += ok
-        print(f"[{'PASS' if ok else 'FAIL'}] {name}: {got} (expected {expected})")
+        print(f"[{'PASS' if ok else 'FAIL'}] {s!r}: {got} (expected {expected})")
     print(f"\n{passed}/{len(TESTS)} passed")

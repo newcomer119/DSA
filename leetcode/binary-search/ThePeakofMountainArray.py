@@ -14,20 +14,31 @@
 
 
 def peak_of_mountain_array(arr: list[int]) -> int:
-    alen = len(arr)
-    left  = 0
-    right = alen - 1
+    # alen = len(arr)
+    # left  = 0
+    # right = alen - 1
+    # ans = -1
+    # while left <= right:
+    #     mid = (left + right) // 2
+    #     if arr[mid] == alen - 1 or arr[mid] > arr[mid + 1]:
+    #         ans = mid
+    #         right = mid - 1
+    #     else : 
+    #         left = mid + 1
+    # return ans
+    n = len(arr)
+    l = 0
+    r = n - 1
     ans = -1
-    while left <= right:
-        mid = (left + right) // 2
-        if arr[mid] == alen - 1 or arr[mid] > arr[mid + 1]:
+    while l <= r:
+        mid = (l + r) // 2
+        if arr[mid] == n - 1 or arr[mid] > arr[mid + 1]:
             ans = mid
-            right = mid - 1
-        else : 
-            left = mid + 1
-    return ans
+            r = mid- 1 
+        else:
+            l = mid + 1
 
-
+    return ans 
 # --- Daily tests ---
 if __name__ == "__main__":
     TESTS = [

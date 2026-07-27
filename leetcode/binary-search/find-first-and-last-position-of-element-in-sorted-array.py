@@ -1,31 +1,63 @@
 def searchRange(nums, target):
-    left, right = 0, len(nums)-1
-    first_pos, last_pos = -1, -1
 
-    # find first pos
+
+    first,last = -1,-1
+    left,right = 0, len(nums)- 1
     while left <= right:
-      mid = (left + right) // 2
-      if nums[mid] == target:
-          first_pos = mid
-          right = mid - 1
-      elif nums[mid] > target:
-          right = mid - 1
-      else:
-          left = mid + 1
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            first = mid
+            right = mid - 1
+        elif nums[mid] > target:
+            right = mid - 1
+        else:
+            left = mid + 1
 
-    # find last pos
-    left, right = 0, len(nums)-1
+    left , right = 0, len(nums) - 1
     while left <= right:
-      mid = (left + right) // 2
-      if nums[mid] == target:
-          last_pos = mid
-          left = mid+1
-      elif nums[mid] > target:
-          right = mid - 1
-      else:
-          left = mid + 1
-    return (first_pos, last_pos)
+        mid = (left +  right) // 2
+        if nums[mid] == target:
+            last = mid
+            left = mid + 1
+        elif nums[mid] > target:
+            right = mid - 1
+        else:
+            left = mid + 1
 
+    return (first, last)
+
+    
+            
+    # left, right = 0, len(nums)-1
+    # first_pos, last_pos = -1, -1
+
+    # # find first pos
+    # while left <= right:
+    #   mid = (left + right) // 2
+    #   if nums[mid] == target:
+    #       first_pos = mid
+    #       right = mid - 1
+    #   elif nums[mid] > target:
+    #       right = mid - 1
+    #   else:
+    #       left = mid + 1
+
+    # # find last pos
+    # left, right = 0, len(nums)-1
+    # while left <= right:
+    #   mid = (left + right) // 2
+    #   if nums[mid] == target:
+    #       last_pos = mid
+    #       left = mid+1
+    #   elif nums[mid] > target:
+    #       right = mid - 1
+    #   else:
+    #       left = mid + 1
+    # return (first_pos, last_pos)
+
+    # new attempt 
+
+    
 
 # --- Daily tests ---
 if __name__ == "__main__":

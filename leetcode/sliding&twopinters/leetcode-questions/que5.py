@@ -28,7 +28,7 @@
 
 from typing import List
 
-def numRescueBoats(self, people: List[int], limit: int) -> int:
+def numRescueBoats(people: List[int], limit: int) -> int:
       people.sort()
       l, r = 0 , len(people)-1
       boat = 0
@@ -42,14 +42,10 @@ def numRescueBoats(self, people: List[int], limit: int) -> int:
 
 # --- Daily tests ---
 if __name__ == "__main__":
-    class Solution:
-        numRescueBoats = numRescueBoats
-
-    sol = Solution()
     TESTS = [([1, 2], 3, 1), ([3, 2, 2, 1], 3, 3), ([3, 5, 3, 4], 5, 4)]
     passed = 0
     for people, limit, exp in TESTS:
-        got = sol.numRescueBoats(people[:], limit)
+        got = numRescueBoats(people[:], limit)
         ok = got == exp
         passed += ok
         print(f"[{'PASS' if ok else 'FAIL'}] {people}, limit={limit} -> {got}")

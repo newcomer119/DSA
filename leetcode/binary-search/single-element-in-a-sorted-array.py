@@ -22,7 +22,7 @@
 # 0 <= nums[i] <= 105
 
 
-def singleNonDuplicate(self, nums):
+def singleNonDuplicate(nums):
     def to_the_left(idx):
         if (idx == len(nums)-1):
             return True
@@ -45,10 +45,6 @@ def singleNonDuplicate(self, nums):
 
 # --- Daily tests ---
 if __name__ == "__main__":
-    class Solution:
-        singleNonDuplicate = singleNonDuplicate
-
-    sol = Solution()
     TESTS = [
         ([1, 1, 2, 3, 3, 4, 4, 8, 8], 2),
         ([3, 3, 7, 7, 10, 11, 11], 10),
@@ -58,7 +54,7 @@ if __name__ == "__main__":
     ]
     passed = 0
     for nums, expected in TESTS:
-        got = sol.singleNonDuplicate(nums)
+        got = singleNonDuplicate(nums)
         ok = got == expected
         passed += ok
         print(f"[{'PASS' if ok else 'FAIL'}] {nums} -> {got} (expected {expected})")

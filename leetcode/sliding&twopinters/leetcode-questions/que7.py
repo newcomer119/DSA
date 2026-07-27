@@ -18,7 +18,7 @@
 # s consists of English letters.
 
 
-def lengthOfLongestSubstringTwoDistinct(self, s):
+def lengthOfLongestSubstringTwoDistinct(s):
     last_occurrence = dict()
     max_len, l = 0, 0
     for r in range(len(s)):
@@ -33,14 +33,10 @@ def lengthOfLongestSubstringTwoDistinct(self, s):
 
 # --- Daily tests ---
 if __name__ == "__main__":
-    class Solution:
-        lengthOfLongestSubstringTwoDistinct = lengthOfLongestSubstringTwoDistinct
-
-    sol = Solution()
     TESTS = [("eceba", 3), ("ccaabbb", 5), ("a", 1)]
     passed = 0
     for s, exp in TESTS:
-        got = sol.lengthOfLongestSubstringTwoDistinct(s)
+        got = lengthOfLongestSubstringTwoDistinct(s)
         ok = got == exp
         passed += ok
         print(f"[{'PASS' if ok else 'FAIL'}] {s} -> {got}")

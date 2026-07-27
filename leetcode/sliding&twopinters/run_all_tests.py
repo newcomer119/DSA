@@ -76,11 +76,6 @@ def build_cyclic_list(values, cycle_pos, node_cls):
 
 def test_que1_reverse_vowels() -> tuple[int, int]:
     mod = load_module("leetcode-questions/que1.py")
-
-    class Solution:
-        reverseVowels = mod.reverseVowels
-
-    sol = Solution()
     tests = [
         ("example 1", "IceCreAm", "AceCreIm"),
         ("example 2", "leetcode", "leotcede"),
@@ -90,7 +85,7 @@ def test_que1_reverse_vowels() -> tuple[int, int]:
     ]
     passed = 0
     for name, s, expected in tests:
-        if run_case(name, sol.reverseVowels(s), expected):
+        if run_case(name, mod.reverseVowels(s), expected):
             passed += 1
     return passed, len(tests)
 
@@ -151,11 +146,6 @@ def test_que4_max_area() -> tuple[int, int]:
 
 def test_que5_rescue_boats() -> tuple[int, int]:
     mod = load_module("leetcode-questions/que5.py")
-
-    class Solution:
-        numRescueBoats = mod.numRescueBoats
-
-    sol = Solution()
     tests = [
         ([1, 2], 3, 1),
         ([3, 2, 2, 1], 3, 3),
@@ -164,18 +154,13 @@ def test_que5_rescue_boats() -> tuple[int, int]:
     ]
     passed = 0
     for people, limit, expected in tests:
-        if run_case(f"people={people}, limit={limit}", sol.numRescueBoats(people[:], limit), expected):
+        if run_case(f"people={people}, limit={limit}", mod.numRescueBoats(people[:], limit), expected):
             passed += 1
     return passed, len(tests)
 
 
 def test_que6_three_sum() -> tuple[int, int]:
     mod = load_module("leetcode-questions/que6.py")
-
-    class Solution:
-        threeSum = mod.threeSum
-
-    sol = Solution()
 
     def normalize(groups):
         return sorted(sorted(g) for g in groups)
@@ -188,7 +173,7 @@ def test_que6_three_sum() -> tuple[int, int]:
     ]
     passed = 0
     for nums, expected in tests:
-        got = normalize(sol.threeSum(nums[:]))
+        got = normalize(mod.threeSum(nums[:]))
         exp = normalize(expected)
         if run_case(str(nums), got, exp):
             passed += 1
@@ -197,11 +182,6 @@ def test_que6_three_sum() -> tuple[int, int]:
 
 def test_que7_two_distinct() -> tuple[int, int]:
     mod = load_module("leetcode-questions/que7.py")
-
-    class Solution:
-        lengthOfLongestSubstringTwoDistinct = mod.lengthOfLongestSubstringTwoDistinct
-
-    sol = Solution()
     tests = [
         ("eceba", 3),
         ("ccaabbb", 5),
@@ -210,18 +190,13 @@ def test_que7_two_distinct() -> tuple[int, int]:
     ]
     passed = 0
     for s, expected in tests:
-        if run_case(s, sol.lengthOfLongestSubstringTwoDistinct(s), expected):
+        if run_case(s, mod.lengthOfLongestSubstringTwoDistinct(s), expected):
             passed += 1
     return passed, len(tests)
 
 
 def test_que8_min_swaps() -> tuple[int, int]:
     mod = load_module("leetcode-questions/que8.py")
-
-    class Solution:
-        minSwaps = mod.minSwaps
-
-    sol = Solution()
     tests = [
         ([1, 0, 1, 0, 1], 1),
         ([0, 0, 0, 1, 0], 0),
@@ -230,18 +205,13 @@ def test_que8_min_swaps() -> tuple[int, int]:
     ]
     passed = 0
     for data, expected in tests:
-        if run_case(str(data), sol.minSwaps(data), expected):
+        if run_case(str(data), mod.minSwaps(data), expected):
             passed += 1
     return passed, len(tests)
 
 
 def test_que9_min_subarray_len() -> tuple[int, int]:
     mod = load_module("leetcode-questions/que9.py")
-
-    class Solution:
-        minSubArrayLen = mod.minSubArrayLen
-
-    sol = Solution()
     tests = [
         (7, [2, 3, 1, 2, 4, 3], 2),
         (4, [1, 4, 4], 1),
@@ -250,7 +220,7 @@ def test_que9_min_subarray_len() -> tuple[int, int]:
     ]
     passed = 0
     for target, nums, expected in tests:
-        if run_case(f"target={target}", sol.minSubArrayLen(target, nums), expected):
+        if run_case(f"target={target}", mod.minSubArrayLen(target, nums), expected):
             passed += 1
     return passed, len(tests)
 

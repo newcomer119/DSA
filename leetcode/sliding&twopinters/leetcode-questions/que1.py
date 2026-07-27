@@ -33,7 +33,7 @@
 # 1 <= s.length <= 3 * 105
 # s consist of printable ASCII characters.
 
-def reverseVowels(self, s: str) -> str:
+def reverseVowels(s: str) -> str:
     vowels = "aeiouAEIOU"
     l, r = 0, len(s)-1
     res = list(s)
@@ -51,14 +51,10 @@ def reverseVowels(self, s: str) -> str:
 
 # --- Daily tests ---
 if __name__ == "__main__":
-    class Solution:
-        reverseVowels = reverseVowels
-
-    sol = Solution()
     TESTS = [("IceCreAm", "AceCreIm"), ("leetcode", "leotcede"), ("bcdfg", "bcdfg")]
     passed = 0
     for s, exp in TESTS:
-        got = sol.reverseVowels(s)
+        got = reverseVowels(s)
         ok = got == exp
         passed += ok
         print(f"[{'PASS' if ok else 'FAIL'}] {s} -> {got} (expected {exp})")

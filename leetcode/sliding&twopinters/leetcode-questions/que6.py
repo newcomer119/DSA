@@ -33,7 +33,7 @@
 
 from typing import List
 
-def threeSum(self, nums: List[int]) -> List[List[int]]:
+def threeSum(nums: List[int]) -> List[List[int]]:
     nums.sort()
     res = []
     for i in range(len(nums)):
@@ -55,10 +55,6 @@ def threeSum(self, nums: List[int]) -> List[List[int]]:
 
 # --- Daily tests ---
 if __name__ == "__main__":
-    class Solution:
-        threeSum = threeSum
-
-    sol = Solution()
     TESTS = [
         ([-1, 0, 1, 2, -1, -4], [[-1, -1, 2], [-1, 0, 1]]),
         ([0, 1, 1], []),
@@ -67,7 +63,7 @@ if __name__ == "__main__":
     norm = lambda g: sorted(sorted(x) for x in g)
     passed = 0
     for nums, exp in TESTS:
-        got = norm(sol.threeSum(nums[:]))
+        got = norm(threeSum(nums[:]))
         ok = got == norm(exp)
         passed += ok
         print(f"[{'PASS' if ok else 'FAIL'}] {nums} -> {got}")

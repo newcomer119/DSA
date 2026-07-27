@@ -32,19 +32,19 @@ from math import ceil
 from typing import List
 
 
-def can_finish_eating(self,piles,h,k):
+def can_finish_eating(piles, h, k):
     hours_used = 0
     for p in piles:
         hours_used += ceil(float(p)/k)
     return hours_used <= h
     
-def minEatingSpeed(self, piles: List[int], h: int) -> int:
+def minEatingSpeed(piles: List[int], h: int) -> int:
     left = 1 
     right = 1000000000
     ans = -1
     while left <= right:
         mid = (left + right) // 2
-        if self.can_finish_eating(piles, h, mid):
+        if can_finish_eating(piles, h, mid):
             ans = mid
             right = mid - 1
 
@@ -55,11 +55,6 @@ def minEatingSpeed(self, piles: List[int], h: int) -> int:
 
 # --- Daily tests ---
 if __name__ == "__main__":
-    class Solution:
-        can_finish_eating = can_finish_eating
-        minEatingSpeed = minEatingSpeed
-
-    sol = Solution()
     TESTS = [
         ([3, 6, 7, 11], 8, 4),
         ([30, 11, 23, 4, 20], 5, 30),
@@ -69,7 +64,7 @@ if __name__ == "__main__":
     ]
     passed = 0
     for piles, h, expected in TESTS:
-        got = sol.minEatingSpeed(piles, h)
+        got = minEatingSpeed(piles, h)
         ok = got == expected
         passed += ok
         print(f"[{'PASS' if ok else 'FAIL'}] piles={piles}, h={h} -> {got} (expected {expected})")

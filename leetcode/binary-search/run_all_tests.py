@@ -182,11 +182,6 @@ def test_first_bad_version() -> tuple[int, int]:
 
 def test_search_range() -> tuple[int, int]:
     mod = load_module("find-first-and-last-position-of-element-in-sorted-array.py")
-
-    class Solution:
-        searchRange = mod.searchRange
-
-    sol = Solution()
     tests = [
         ("found range", [5, 7, 7, 8, 8, 10], 8, [3, 4]),
         ("missing", [5, 7, 7, 8, 8, 10], 6, [-1, -1]),
@@ -196,18 +191,13 @@ def test_search_range() -> tuple[int, int]:
     ]
     passed = 0
     for name, nums, target, expected in tests:
-        if run_case(name, list(sol.searchRange(nums, target)), expected):
+        if run_case(name, list(mod.searchRange(nums, target)), expected):
             passed += 1
     return passed, len(tests)
 
 
 def test_single_non_duplicate() -> tuple[int, int]:
     mod = load_module("single-element-in-a-sorted-array.py")
-
-    class Solution:
-        singleNonDuplicate = mod.singleNonDuplicate
-
-    sol = Solution()
     tests = [
         ("example 1", [1, 1, 2, 3, 3, 4, 4, 8, 8], 2),
         ("example 2", [3, 3, 7, 7, 10, 11, 11], 10),
@@ -217,19 +207,13 @@ def test_single_non_duplicate() -> tuple[int, int]:
     ]
     passed = 0
     for name, nums, expected in tests:
-        if run_case(name, sol.singleNonDuplicate(nums), expected):
+        if run_case(name, mod.singleNonDuplicate(nums), expected):
             passed += 1
     return passed, len(tests)
 
 
 def test_koko() -> tuple[int, int]:
     mod = load_module("koko-eating-bananas.py")
-
-    class Solution:
-        can_finish_eating = mod.can_finish_eating
-        minEatingSpeed = mod.minEatingSpeed
-
-    sol = Solution()
     tests = [
         ("example 1", [3, 6, 7, 11], 8, 4),
         ("example 2", [30, 11, 23, 4, 20], 5, 30),
@@ -239,7 +223,7 @@ def test_koko() -> tuple[int, int]:
     ]
     passed = 0
     for name, piles, h, expected in tests:
-        if run_case(name, sol.minEatingSpeed(piles, h), expected):
+        if run_case(name, mod.minEatingSpeed(piles, h), expected):
             passed += 1
     return passed, len(tests)
 

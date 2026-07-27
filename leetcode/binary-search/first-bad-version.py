@@ -20,7 +20,7 @@
 # Input: n = 1, bad = 1
 # Output: 1
 
-def firstBadVersion(self, n: int) -> int:
+def firstBadVersion(n: int) -> int:
         l,r = 0 ,n
         ans = -1
         while l <= r:

@@ -24,7 +24,7 @@
 # data[i] is either 0 or 1.
 
 
-def minSwaps(self, data):
+def minSwaps(data):
     count1 = data.count(1)
     total = 0
     for i in range(count1): 
@@ -39,14 +39,10 @@ def minSwaps(self, data):
 
 # --- Daily tests ---
 if __name__ == "__main__":
-    class Solution:
-        minSwaps = minSwaps
-
-    sol = Solution()
     TESTS = [([1, 0, 1, 0, 1], 1), ([0, 0, 0, 1, 0], 0), ([1, 1, 1], 0)]
     passed = 0
     for data, exp in TESTS:
-        got = sol.minSwaps(data)
+        got = minSwaps(data)
         ok = got == exp
         passed += ok
         print(f"[{'PASS' if ok else 'FAIL'}] {data} -> {got}")

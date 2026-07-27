@@ -25,7 +25,7 @@
 from typing import List
 
 
-def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+def minSubArrayLen(target: int, nums: List[int]) -> int:
     size = len(nums)+1
     total, l = 0, 0
     for r in range(len(nums)):
@@ -37,7 +37,7 @@ def minSubArrayLen(self, target: int, nums: List[int]) -> int:
     return size if size != len(nums)+1 else 0
 # The above solution using a flexible sliding window uses O(n) time complexity. As a follow up, is there an algorithm that solves this question in O(n log(n))? Yes! Consider using the n elements in nums as a starting point of a subarray, and then use O(log(n)) time complexity to find the endpoint of that subarray. This is can be done via a for loop and a binary search on a prefix sum array.
 
-def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+def minSubArrayLen(target: int, nums: List[int]) -> int:
     prefix_sum = [0]
     for n in nums:
         prefix_sum.append(prefix_sum[-1] + n)
@@ -57,14 +57,10 @@ def minSubArrayLen(self, target: int, nums: List[int]) -> int:
 
 # --- Daily tests ---
 if __name__ == "__main__":
-    class Solution:
-        minSubArrayLen = minSubArrayLen
-
-    sol = Solution()
     TESTS = [(7, [2, 3, 1, 2, 4, 3], 2), (4, [1, 4, 4], 1), (11, [1, 1, 1, 1, 1, 1, 1, 1], 0)]
     passed = 0
     for target, nums, exp in TESTS:
-        got = sol.minSubArrayLen(target, nums)
+        got = minSubArrayLen(target, nums)
         ok = got == exp
         passed += ok
         print(f"[{'PASS' if ok else 'FAIL'}] target={target} -> {got}")

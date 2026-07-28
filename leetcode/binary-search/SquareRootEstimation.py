@@ -26,8 +26,7 @@ def square_root(n: int) -> int:
     #         left = mid + 1
     # return ans - 1
 
-
-    l, r = 0,  n
+    l, r = 0, n
     ans = -1
     while l <= r:
         mid = (l + r) // 2
@@ -38,7 +37,9 @@ def square_root(n: int) -> int:
             r = mid - 1
         else:
             l = mid + 1
+
     return ans - 1
+
 
 # --- Daily tests ---
 if __name__ == "__main__":

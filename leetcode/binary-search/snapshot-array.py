@@ -1,12 +1,4 @@
 # 1146. Snapshot Array
-# Solved
-# Medium
-# Topics
-# premium lock icon
-# Companies
-# Hint
-# Implement a SnapshotArray that supports the following interface:
-
 # SnapshotArray(int length) initializes an array-like data structure with the given length. Initially, each element equals 0.
 # void set(index, val) sets the element at the given index to be equal to val.
 # int snap() takes a snapshot of the array and returns the snap_id: the total number of times we called snap() minus 1.
@@ -27,32 +19,54 @@
 
 
 class SnapshotArray:
-
     def __init__(self, n: int):
-        self.histories = [[[-1, 0]] for _ in range(n)]
+        self.histories = [[[-1 ,0 ]] for _ in range(n)]
         self.snap_id = 0
+        # self.histories = [[[-1, 0]] for _ in range(n)]
+        # self.snap_id = 0
 
     def set(self, index: int, val: int) -> None:
+        # self.histories[index].append([self.snap_id, val])
         self.histories[index].append([self.snap_id, val])
 
     def snap(self) -> int:
+        # self.snap_id += 1
+        # return self.snap_id - 1
         self.snap_id += 1
         return self.snap_id - 1
 
+
     def get(self, index: int, snap_id: int) -> int:
-        left = 0
-        right = len(self.histories[index]) - 1
-        pos = -1
-        while left <= right:
-            mid = (left + right) // 2
+        l = 0
+        r = len(self.histories[index]) - 1
+
+        ans = -1
+
+        while l <= r:
+            mid = (l + r) // 2
             if self.histories[index][mid][0] <= snap_id:
-                left = mid + 1
-                pos = mid
-
+                l = mid + 1
+                ans = mid
             else:
-                right = mid - 1
+                r = mid - 1
 
-        return self.histories[index][pos][1]
+
+        return self.histories[index][ans][1]
+
+
+        # left = 0
+        # right = len(self.histories[index]) - 1
+        # pos = -1
+        # while left <= right:
+        #     mid = (left + right) // 2
+        #     if self.histories[index][mid][0] <= snap_id:
+        #         left = mid + 1
+        #         pos = mid
+
+        #     else:
+        #         right = mid - 1
+
+        # return self.histories[index][pos][1]
 
 
 # --- Daily tests ---

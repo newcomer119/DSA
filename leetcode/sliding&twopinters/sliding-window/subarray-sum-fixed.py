@@ -4,7 +4,7 @@
 # For example, if the input is nums = [1, 2, 3, 7, 4, 1], k = 3, then the output would be 14 as the largest length 3 subarray sum is given by [3, 7, 4] which sums to 14.
 
 
-def subarray_sum_fixed(nums: list[int], k: int) -> int:
+def subarray_sum_fixed(nums: list[int], k: int) -> int:    
     window_sum = 0
     for i in range(k):
         window_sum += nums[i]

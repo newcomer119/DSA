@@ -12,8 +12,15 @@ def init_sum_array(nums: list[int]) -> list[int]:
     return list(accumulate(nums,initial = 0))
 
 def range_sum_query_immutable(nums: list[int], left: int, right: int) -> int:
-    cumm_sum  = init_sum_array(nums)
-    return cumm_sum[right + 1] - cumm_sum[left]
+    # cumm_sum  = init_sum_array(nums)
+    # return cumm_sum[right + 1] - cumm_sum[left]
+    # Brute force 
+
+    total = 0
+    for i in range(left,right + 1):
+        total += nums[i]
+    return total
+
 
 
 # --- Daily tests ---

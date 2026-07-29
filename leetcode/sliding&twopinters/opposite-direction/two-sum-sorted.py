@@ -11,17 +11,27 @@
 
 
 def two_sum_sorted(arr: list[int], target: int) -> list[int]:
-    l, r = 0, len(arr) - 1
+    # l, r = 0, len(arr) - 1
+    # while l < r:
+    #     two_sum = arr[l] + arr[r]
+    #     if two_sum == target:
+    #         return [l, r]
+    #     if two_sum < target:
+    #         l += 1
+    #     else:
+    #         r -= 1
+    # return []
+    l,r = 0, len(arr) - 1
     while l < r:
-        two_sum = arr[l] + arr[r]
-        if two_sum == target:
-            return [l, r]
-        if two_sum < target:
-            l += 1
-        else:
+        tsum = arr[l] + arr[r]
+        if tsum == target:
+            return [l , r]
+        elif tsum > target:
             r -= 1
-    return []
+        else:
+            l += 1
 
+    return []
 
 # --- Daily tests ---
 if __name__ == "__main__":

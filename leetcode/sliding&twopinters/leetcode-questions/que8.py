@@ -25,17 +25,27 @@
 
 
 def minSwaps(data):
-    count1 = data.count(1)
-    total = 0
-    for i in range(count1): 
-        total += data[i]
-    swaps = count1-total
-    for r in range(count1, len(data)):
-        total += data[r]
-        total -= data[r-count1]
-        swaps = min(swaps, count1-total)
-    return swaps
+    # count1 = data.count(1)
+    # total = 0
+    # for i in range(count1): 
+    #     total += data[i]
+    # swaps = count1-total
+    # for r in range(count1, len(data)):
+    #     total += data[r]
+    #     total -= data[r-count1]
+    #     swaps = min(swaps, count1-total)
+    # return swaps
 
+    count1  = data.count(1)
+    total = 0
+    for i in range(count1):
+        total += data[i]
+    swap = count1 - total
+    for right in range(count1, len(data)):
+        total += data[right]
+        total -= data[right - count1]
+        swap = min(swap, count1 - total)
+    return swap
 
 # --- Daily tests ---
 if __name__ == "__main__":

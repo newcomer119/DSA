@@ -39,8 +39,7 @@ from typing import List
 class Solution:
     def compress(self, chars: List[str]) -> int:
         left = 0
-        write =0 
-
+        write = 0
         while left < len(chars):
             right = left 
             while right < len(chars) and chars[left] == chars[right]:
@@ -52,12 +51,33 @@ class Solution:
 
             if count > 1:
                 for digit in str(count):
-                    chars[write] = digit
+                    chars[write] = digit 
                     write += 1
 
             left = right
 
-        return write
+        return write 
+        
+        # left = 0
+        # write =0 
+
+        # while left < len(chars):
+        #     right = left 
+        #     while right < len(chars) and chars[left] == chars[right]:
+        #         right += 1
+
+        #     count = right - left 
+        #     chars[write] = chars[left]
+        #     write += 1
+
+        #     if count > 1:
+        #         for digit in str(count):
+        #             chars[write] = digit
+        #             write += 1
+
+        #     left = right
+
+        # return write
 
 
 # --- Daily tests ---

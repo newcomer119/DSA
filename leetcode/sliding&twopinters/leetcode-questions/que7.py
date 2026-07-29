@@ -18,17 +18,40 @@
 # s consists of English letters.
 
 
-def lengthOfLongestSubstringTwoDistinct(s):
-    last_occurrence = dict()
-    max_len, l = 0, 0
-    for r in range(len(s)):
-        last_occurrence[s[r]] = r
-        r += 1
-        if len(last_occurrence) == 3:
-            l = min(last_occurrence.values())+1
-            del last_occurrence[s[l-1]]
-        max_len = max(max_len, r - l)
+def lengthOfLongestSubstringTwoDistinct(s: str) -> int:
+    char_count = {}
+    max_len = 0
+    left =0 
+    for right in range(len(s)):
+        char_count[s[right]] = char_count.get(s[right], 0) + 1
+        while len(char_count) > 2:
+            char_count[s[left]] -= 1
+            if char_count[s[left]] == 0:
+                del char_count[s[left]]
+            left += 1
+
+        max_len = max(max_len, right - left + 1)
     return max_len
+
+
+    # # Use a dictionary to keep track of character counts in the current window
+    # char_count = {}
+    # max_len = 0
+    # left = 0
+    
+    # for right in range(len(s)):
+    #     # Add the character at 'right' to the window
+    #     char_count[s[right]] = char_count.get(s[right], 0) + 1
+    #     # If we have more than 2 distinct characters, shrink the window
+    #     while len(char_count) > 2:
+    #         char_count[s[left]] -= 1
+    #         if char_count[s[left]] == 0:
+    #             del char_count[s[left]]
+    #         left += 1
+    #     # Update the maximum length
+    #     max_len = max(max_len, right - left + 1)       
+    # return max_len
+ 
 
 
 # --- Daily tests ---

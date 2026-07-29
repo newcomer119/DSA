@@ -5,27 +5,16 @@
 # premium lock icon
 # Companies
 # Given a string s, reverse only all the vowels in the string and return it.
-
 # The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
-
- 
-
 # Example 1:
-
 # Input: s = "IceCreAm"
-
 # Output: "AceCreIm"
-
 # Explanation:
-
 # The vowels in s are ['I', 'e', 'e', 'A']. On reversing the vowels, s becomes "AceCreIm".
 
 # Example 2:
-
 # Input: s = "leetcode"
-
 # Output: "leotcede"
-
  
 
 # Constraints:
@@ -34,19 +23,36 @@
 # s consist of printable ASCII characters.
 
 def reverseVowels(s: str) -> str:
+    # vowels = "aeiouAEIOU"
+    # l, r = 0, len(s)-1
+    # res = list(s)
+    # while l < r:
+    #     if s[l] not in vowels:        # s[l] is not vowel
+    #         l += 1
+    #     elif s[r] not in vowels:      # s[r] is not vowel
+    #         r -= 1
+    #     else:
+    #         res[l], res[r] = res[r], res[l]   # both vowels, swap
+    #         l += 1
+    #         r -= 1
+    # return "".join(res)
+
     vowels = "aeiouAEIOU"
-    l, r = 0, len(s)-1
+    l, r = 0, len(s) - 1
     res = list(s)
     while l < r:
-        if s[l] not in vowels:        # s[l] is not vowel
+        if s[l] not in vowels:
             l += 1
-        elif s[r] not in vowels:      # s[r] is not vowel
+
+        elif s[r] not in vowels:
             r -= 1
+
         else:
-            res[l], res[r] = res[r], res[l]   # both vowels, swap
-            l += 1
+            res[l], res[r] = res[r] , res[l]
+            l+= 1
             r -= 1
     return "".join(res)
+
 
 
 # --- Daily tests ---

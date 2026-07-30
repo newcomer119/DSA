@@ -1,20 +1,28 @@
 def letter_combination(n: int) -> list[str]:
+    # res = []
+    # def dfs(start_index,path):
+    #     if start_index == n:
+    #         res.append("".join(path))
+    #         return 
+    #     for letter in "ab":
+    #         path.append(letter)
+    #         dfs(start_index + 1, path)
+    #         path.pop()
+    # dfs(0,[])
+    # return res
     res = []
-    def dfs(start_index,path):
+    def dfs(start_index, path):
         if start_index == n:
             res.append("".join(path))
             return 
+
         for letter in "ab":
             path.append(letter)
             dfs(start_index + 1, path)
             path.pop()
     dfs(0,[])
     return res
-            
 
-
-    
-    return res
 
 
 # --- Daily tests ---

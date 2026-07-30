@@ -1,18 +1,28 @@
 def subsets(nums: list[int]) -> list[list[int]]:
+    # res = []
+    # def dfs(start_index,cur):
+    #     if start_index == len(nums):
+    #         res.append(cur[:])
+    #         return 
+
+    #     cur.append(nums[start_index])
+    #     dfs(start_index + 1, cur)
+    #     cur.pop()
+    #     dfs(start_index + 1, cur)
+        
+    # dfs(0,[])
+    # return res
+
     res = []
     def dfs(start_index,cur):
         if start_index == len(nums):
             res.append(cur[:])
             return 
-
         cur.append(nums[start_index])
-        dfs(start_index + 1, cur)
+        dfs(start_index + 1,cur)
         cur.pop()
         dfs(start_index + 1, cur)
-        
     dfs(0,[])
-    return res
-
     return res
 
 

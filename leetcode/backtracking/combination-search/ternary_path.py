@@ -6,20 +6,36 @@ class Node:
         self.children = children
 
 def ternary_tree_paths(root: Node) -> list[str]:
+    # def dfs(root,path,res):
+    #     if not root:
+    #         return 
+    #     if all (c is None for c in root.children):
+    #         res.append("->".join(path + [str(root.val)]))
+    #         return 
+    
+    #     for child in root.children:
+    #         if child is not None:
+    #             dfs(child, path + [str(root.val)], res)
+
+    # res = []
+    # dfs(root, [], res)
+    # return res
+
     def dfs(root,path,res):
         if not root:
             return 
+
         if all (c is None for c in root.children):
             res.append("->".join(path + [str(root.val)]))
             return 
-    
+
         for child in root.children:
             if child is not None:
                 dfs(child, path + [str(root.val)], res)
-
     res = []
     dfs(root, [], res)
     return res
+
 
 # this function builds a tree from input; you don't have to modify it
 # learn more about how trees are encoded in https://algo.monster/problems/serializing_tree

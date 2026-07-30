@@ -13,20 +13,37 @@ def letter_combinations_of_phone_number(digits: str) -> list[str]:
     if not digits:
         return res
 
-    def dfs(start_index,path) -> None:
+    def dfs(start_index, path):
         if start_index == len(digits):
             res.append("".join(path))
             return 
 
         next_number = digits[start_index]
-        for letter in KEYBOARD[next_number]:
-            path.append(letter)
-            dfs(start_index + 1,path)
+        for kb in KEYBOARD[next_number]:
+            path.append(kb)
+            dfs(start_index + 1, path)
             path.pop()
 
-
     dfs(0,[])
-    return res
+    return res    
+    # res = []
+    # if not digits:
+    #     return res
+
+    # def dfs(start_index,path) -> None:
+    #     if start_index == len(digits):
+    #         res.append("".join(path))
+    #         return 
+
+    #     next_number = digits[start_index]
+    #     for letter in KEYBOARD[next_number]:
+    #         path.append(letter)
+    #         dfs(start_index + 1,path)
+    #         path.pop()
+
+
+    # dfs(0,[])
+    # return res
         
 
     return res

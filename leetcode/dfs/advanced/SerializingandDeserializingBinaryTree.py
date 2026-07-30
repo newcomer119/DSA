@@ -6,19 +6,16 @@ class Node:
 
 def serialize(root):
     res = []
-
     def dfs(root):
         if not root:
             res.append(" X ")
             return 
-
         res.append(str(root.val))
         dfs(root.left)
         dfs(root.right)
         return 
     dfs(root)
     return " ".join(res)
-            
 
 def deserialize(s):
     def dfs(nodes):
@@ -32,9 +29,6 @@ def deserialize(s):
 
     return dfs(iter(s.split()))
     
-
-    return dfs(iter(s.split()))
-
 
 # --- Daily tests ---
 if __name__ == "__main__":

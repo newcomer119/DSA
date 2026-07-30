@@ -5,8 +5,12 @@ class Node:
         self.right = right
 
 def invert_binary_tree(tree: Node) -> Node:
+    # if tree is None:
+    #     return None
+    # return Node(tree.val, invert_binary_tree(tree.right), invert_binary_tree(tree.left))
     if tree is None:
-        return None
+        return None 
+
     return Node(tree.val, invert_binary_tree(tree.right), invert_binary_tree(tree.left))
 
 

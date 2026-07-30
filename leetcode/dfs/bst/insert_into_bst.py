@@ -5,13 +5,21 @@ class Node:
         self.right = right
 
 def insert_bst(bst: Node, val: int) -> Node:
+    # if bst is None:
+    #     return Node(val)
+    # if bst.val < val:
+    #     bst.right = insert_bst(bst.right,val)
+    # elif bst.val > val:
+    #     bst.left = insert_bst(bst.left,val)
+    # return bst        
     if bst is None:
         return Node(val)
+
     if bst.val < val:
         bst.right = insert_bst(bst.right,val)
     elif bst.val > val:
         bst.left = insert_bst(bst.left,val)
-    return bst        
+    return bst
 
 # this function builds a tree from input; you don't have to modify it
 # learn more about how trees are encoded in https://algo.monster/problems/serializing_tree

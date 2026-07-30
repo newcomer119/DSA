@@ -5,14 +5,21 @@ class Node:
         self.right = right
 
 def tree_max_depth(root: Node) -> int:
+    # def dfs(root):
+    #     # null node adds no depth
+    #     if not root:
+    #         return 0
+    #     # num nodes in longest path of current subtree = max num nodes of its two subtrees + 1 current node
+    #     return max(dfs(root.left), dfs(root.right)) + 1
+    # return dfs(root) - 1 if root else 0
+
     def dfs(root):
-        # null node adds no depth
         if not root:
             return 0
-        # num nodes in longest path of current subtree = max num nodes of its two subtrees + 1 current node
-        return max(dfs(root.left), dfs(root.right)) + 1
-    return dfs(root) - 1 if root else 0
 
+        return max(dfs(root.left), dfs(root.right)) + 1
+
+    return dfs(root) -1 if root else 0
 
 # --- Daily tests ---
 if __name__ == "__main__":

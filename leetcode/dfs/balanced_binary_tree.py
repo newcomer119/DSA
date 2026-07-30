@@ -5,16 +5,27 @@ class Node:
         self.right = right
 
 def is_balanced(tree: Node) -> bool:
+    # def check(node):
+    #     if node is None:
+    #         return (True,-1)
+
+    #     left_ok,left_h = check(node.left)
+    #     right_ok,right_h = check(node.right)
+    #     balanced = left_ok and right_ok and abs(left_h - right_h) <= 1
+
+    #     return (balanced, max(left_h,right_h) + 1)
+
+    # return check(tree)[0] 
+    # 
     def check(node):
         if node is None:
-            return (True,-1)
+            return (True, -1)
 
         left_ok,left_h = check(node.left)
         right_ok,right_h = check(node.right)
         balanced = left_ok and right_ok and abs(left_h - right_h) <= 1
 
         return (balanced, max(left_h,right_h) + 1)
-
     return check(tree)[0]
 
 # this function builds a tree from input; you don't have to modify it

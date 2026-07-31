@@ -34,20 +34,35 @@ from typing import List
 
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        def dfs(start_index, path):
+        def dfs(start_index,path):
             ans.append(path[:])
             for i in range(start_index, len(nums)):
-                if i > start_index and nums[i] == nums[i - 1]:
+                if i > start_index and nums[i] == nums[i-1]:
                     continue 
 
                 path.append(nums[i])
                 dfs(i + 1,path)
                 path.pop()
-
         ans = []
         nums.sort()
         dfs(0, [])
         return ans
+
+
+        # def dfs(start_index, path):
+        #     ans.append(path[:])
+        #     for i in range(start_index, len(nums)):
+        #         if i > start_index and nums[i] == nums[i - 1]:
+        #             continue 
+
+        #         path.append(nums[i])
+        #         dfs(i + 1,path)
+        #         path.pop()
+
+        # ans = []
+        # nums.sort()
+        # dfs(0, [])
+        # return ans
 
 
 # --- Daily tests ---

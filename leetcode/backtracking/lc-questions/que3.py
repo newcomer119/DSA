@@ -1,9 +1,5 @@
 # 526. Beautiful Arrangement
-# Solved
-# Medium
-# Topics
-# premium lock icon
-# Companies
+
 # Suppose you have n integers labeled 1 through n. A permutation of those n integers perm (1-indexed) is considered a beautiful arrangement if for every i (1 <= i <= n), either of the following is true:
 
 # perm[i] is divisible by i.
@@ -39,19 +35,30 @@ class Solution:
         visited = [False] * (n + 1)
 
         def findBeautiful(i):
-            if i > n:
+            if i >n:
                 return 1
 
-            count = 0
+            cnt = 0
             for num in range(1, n + 1):
                 if (not visited[num]) and (i % num == 0 or num % i == 0):
-                    visited[num] = True
-                    count += findBeautiful(i+1)
+                    visited[num] = True 
+                    cnt += findBeautiful(i+1)
                     visited[num] = False
-            return count
+            return cnt
         return findBeautiful(1)
+        #     if i > n:
+        #         return 1
 
+        #     count = 0
+        #     for num in range(1, n + 1):
+        #         if (not visited[num]) and (i % num == 0 or num % i == 0):
+        #             visited[num] = True
+        #             count += findBeautiful(i+1)
+        #             visited[num] = False
+        #     return count
+        # return findBeautiful(1)
 
+            
 # --- Daily tests ---
 if __name__ == "__main__":
     sol = Solution()

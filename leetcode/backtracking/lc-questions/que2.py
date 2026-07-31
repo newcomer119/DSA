@@ -37,7 +37,6 @@ class Solution:
         def dfs(node, remaining, path):
             if (node is None):
                 return 
-
             path.append(node.val)
             remaining -= node.val
             if node.left is None and node.right is None and remaining == 0:

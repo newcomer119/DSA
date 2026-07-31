@@ -44,18 +44,20 @@ from typing import List
 
 class Solution:
     def grayCode(self, n: int) -> List[int]:
-        length = 1 << n   # same as 2**n
+        length  =  1 << n
         visited = [False] * length
 
         def dfs(start_index, code):
             if start_index == length:
-                return True
+                return True 
+
             for i in range(n):
                 new_code = code ^ (1 << i)
                 if not visited[new_code]:
                     path.append(new_code)
                     visited[new_code] = True
-                    if dfs(start_index+1, new_code): return True
+                    if dfs(start_index + 1, new_code):
+                        return True
                     visited[new_code] = False
                     path.pop()
             return False
@@ -64,6 +66,27 @@ class Solution:
         visited[0] = True
         dfs(1, 0)
         return path
+
+        # length = 1 << n   # same as 2**n
+        # visited = [False] * length
+
+        # def dfs(start_index, code):
+        #     if start_index == length:
+        #         return True
+        #     for i in range(n):
+        #         new_code = code ^ (1 << i)
+        #         if not visited[new_code]:
+        #             path.append(new_code)
+        #             visited[new_code] = True
+        #             if dfs(start_index+1, new_code): return True
+        #             visited[new_code] = False
+        #             path.pop()
+        #     return False
+
+        # path = [0]
+        # visited[0] = True
+        # dfs(1, 0)
+        # return path
 
 
 # --- Daily tests ---

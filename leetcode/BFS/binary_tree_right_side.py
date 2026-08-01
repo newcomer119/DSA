@@ -47,7 +47,6 @@ def build_tree(nodes, f):
     right = build_tree(nodes, f)
     return Node(f(val), left, right)
 
-    return Node(f(val), left, right)
 
 
 # --- Daily tests ---

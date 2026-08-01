@@ -7,31 +7,63 @@
 from collections import deque
 
 def count_number_of_islands(grid: list[list[int]]) -> int:
+    # if not grid or not grid[0]:
+    #     return 0
+    # num_rows = len(grid)
+    # num_cols = len(grid[0])
+    # def get_neighbors(coord):
+    #     res = []
+    #     row,col = coord
+    #     delta_row = [-1,0,1,0]
+    #     delta_col = [0,1,0,-1]
+    #     for i in range(len(delta_row)):
+    #         r = row + delta_row[i]
+    #         c = col + delta_col[i]
+    #         if 0 <= r < num_rows and 0 <= c < num_cols:
+    #             res.append((r,c))
+
+    #     return res
+
     if not grid or not grid[0]:
         return 0
+
     num_rows = len(grid)
     num_cols = len(grid[0])
+
     def get_neighbors(coord):
         res = []
         row,col = coord
-        delta_row = [-1,0,1,0]
-        delta_col = [0,1,0,-1]
-        for i in range(len(delta_row)):
-            r = row + delta_row[i]
-            c = col + delta_col[i]
+        dr = [-1,0,1,0]
+        dc = [0,1,0,-1]
+        for i in range(len(dr)):
+            r = row + dr[i]
+            r = col + dc[i]
             if 0 <= r < num_rows and 0 <= c < num_cols:
                 res.append((r,c))
+
 
         return res
 
     def bfs(start):
-        queue = deque([start])
-        r, c = start
+        # queue = deque([start])
+        # r, c = start
+        # grid[r][c] = 0
+        # while len(queue) > 0:
+        #     node = queue.popleft()
+        #     for neighbor in get_neighbors(node):
+        #         r, c = neighbor
+        #         if grid[r][c] == 0:
+        #             continue
+        #         queue.append(neighbor)
+        #         grid[r][c] = 0
+
+        queue =deque([start])
+        r,c = start
         grid[r][c] = 0
-        while len(queue) > 0:
+        while queue:
             node = queue.popleft()
             for neighbor in get_neighbors(node):
-                r, c = neighbor
+                r,c = neighbor
                 if grid[r][c] == 0:
                     continue
                 queue.append(neighbor)

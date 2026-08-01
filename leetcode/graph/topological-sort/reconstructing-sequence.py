@@ -57,32 +57,78 @@
 from collections import deque
 
 def sequence_reconstruction(original: list[int], seqs: list[list[int]]) -> bool:
-    n = len(original)
-    graph = {node: set() for node in range(1, n + 1)}
-    indegree = {node: 0 for node in range(1, n + 1)}
+    def find_indegree(graph):
+        indegree = {node : 0 for node in graph}
+        for node in graph:
+            for neighbor in graph[node]:
+                indegree[neighbor] += 1
 
+        return indegree
+   
+    # def find_indegree(graph):
+    #     indegree = {node : 0 for node in graph}
+    #     for node in graph:
+    #         for neighbor in graph[node]:
+    #             indegree[neighbor] += 1
+    #     return indegree
+    def topo_sort(graph):
+        order = []
+        queue =deque()
+        indegree = find_indegree(graph)
+
+        for node in indegree:
+            if indegree[node] == 0:
+                queue.append(node)
+
+        while queue:
+            if len(queue) > 1:
+                return False
+
+            node = queue.popleft()
+            order.append(node)
+            for neighbor in graph[node]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    queue.append(neighbor)
+
+        return len(order) == len(original) and order == original
+
+    
+    # def topo_sort(graph):
+    #     order = []
+    #     queue = deque()
+    #     indegree = find_indegree(graph)
+
+    #     for node in indegree:
+    #         if indegree[node] == 0:
+    #             queue.append(node)
+
+    #     while queue:
+    #         if len(queue) > 1:
+    #             return False
+    #         node = queue.popleft()
+    #         order.append(node)
+    #         for neighbor in graph[node]:
+    #             indegree[neighbor] -= 1
+    #             if indegree[neighbor] == 0:
+    #                 queue.append(neighbor)
+    #     return len(order) == len(original) and order == original
+        
+    n = len(original)
+    graph = {node : set() for node in range(1, 1 + n)}
     for seq in seqs:
         for i in range(len(seq) - 1):
-            u, v = seq[i], seq[i + 1]
-            if v not in graph[u]:
-                graph[u].add(v)
-                indegree[v] += 1
+            source,destination = seq[i] , seq[i + 1]
+            graph[source].add(destination)
 
-    q = deque(node for node in indegree if indegree[node] == 0)
-    order = []
-
-    while q:
-        if len(q) > 1:
-            return False
-        node = q.popleft()
-        order.append(node)
-        for neighbor in graph[node]:
-            indegree[neighbor] -= 1
-            if indegree[neighbor] == 0:
-                q.append(neighbor)
-
-    return order == original
-
+    return topo_sort(graph)
+    # n = len(original)
+    # graph = {node : set() for node in range(1, 1 + n)}
+    # for seq in seqs:
+    #     for i in range(len(seq) - 1):
+    #         source , destination = seq[i], seq[i + 1]
+    #         graph[source].add(destination)
+    # return topo_sort(graph)
 
 # --- Daily tests ---
 if __name__ == "__main__":
@@ -90,6 +136,7 @@ if __name__ == "__main__":
         ([1, 2, 3], [[1, 2], [1, 3]], False),
         ([1, 2, 3], [[1, 2], [1, 3], [2, 3]], True),
         ([1, 2, 3], [[1, 2]], False),
+        ([4, 1, 5, 2, 6, 3], [[5, 2, 6, 3], [4, 1, 5, 2]], True),
     ]
     passed = 0
     for original, seqs, exp in TESTS:

@@ -25,7 +25,13 @@
 from collections import deque
 
 def count_parents(graph: dict[str, list[str]]) -> dict[str, int]:
-    counts = {node: 0 for node in graph}
+    # counts = {node: 0 for node in graph}
+    # for parent in graph:
+    #     for child in graph[parent]:
+    #         counts[child] += 1
+    # return counts
+
+    counts = {node : 0 for node in graph}
     for parent in graph:
         for child in graph[parent]:
             counts[child] += 1
@@ -34,31 +40,44 @@ def count_parents(graph: dict[str, list[str]]) -> dict[str, int]:
 
 def topo_sort(graph: dict[str, list[str]], task_times: dict[str, int]) -> int:
     q = deque()
-    dis = {node: 0 for node in graph}  # earliest finish time
-    indeg = count_parents(graph)
-
+    dis = {node : 0 for node in graph}
+    indegree = count_parents(graph)
     ans = 0
-
-    # start with tasks that have no prerequisites
-    for node in indeg:
-        if indeg[node] == 0:
+    for node in indegree:
+        if indegree[node] == 0:
             q.append(node)
             dis[node] = task_times[node]
             ans = max(ans, dis[node])
 
+    # q = deque()
+    # dis = {node: 0 for node in graph}  # earliest finish time
+    # indeg = count_parents(graph)
+    # ans = 0
+    # # start with tasks that have no prerequisites
+    # for node in indeg:
+    #     if indeg[node] == 0:
+    #         q.append(node)
+    #         dis[node] = task_times[node]
+    #         ans = max(ans, dis[node])
     while q:
         node = q.popleft()
-
         for child in graph[node]:
-            # relax edge node -> child
             dis[child] = max(dis[child], dis[node] + task_times[child])
             ans = max(ans, dis[child])
-
-            indeg[child] -= 1
-            if indeg[child] == 0:
+            indegree[child] -= 1
+            if indegree[child] == 0:
                 q.append(child)
-
     return ans
+    # while q:
+    #     node = q.popleft()
+    #     for child in graph[node]:
+    #         # relax edge node -> child
+    #         dis[child] = max(dis[child], dis[node] + task_times[child])
+    #         ans = max(ans, dis[child])
+    #         indeg[child] -= 1
+    #         if indeg[child] == 0:
+    #             q.append(child)
+    # return ans
 
 def task_scheduling_2(tasks: list[str], times: list[int], requirements: list[list[str]]) -> int:
     graph: dict[str, list[str]] = {t: [] for t in tasks}

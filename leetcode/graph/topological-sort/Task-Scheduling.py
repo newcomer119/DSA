@@ -17,18 +17,27 @@
 from collections import deque
 
 def find_indegree(graph):
+    # indegree = {node : 0 for node in graph}
+    # for node in graph:
+    #     for neighbors in graph[node]:
+    #         indegree[neighbors] += 1
+    # return indegree
     indegree = {node : 0 for node in graph}
     for node in graph:
         for neighbors in graph[node]:
             indegree[neighbors] += 1
+
     return indegree
+
+
 def topo_sort(graph):
-    res =[]
+    res = []
     q = deque()
     indegree = find_indegree(graph)
     for node in indegree:
         if indegree[node] == 0:
             q.append(node)
+
     while q:
         node = q.popleft()
         res.append(node)
@@ -36,8 +45,31 @@ def topo_sort(graph):
             indegree[neighbor] -= 1
             if indegree[neighbor] == 0:
                 q.append(neighbor)
-    return res if len(graph) == len(res) else None
+
+    return res if len(graph) == len(res) else None 
+
+    # res =[]
+    # q = deque()
+    # indegree = find_indegree(graph)
+    # for node in indegree:
+    #     if indegree[node] == 0:
+    #         q.append(node)
+    # while q:
+    #     node = q.popleft()
+    #     res.append(node)
+    #     for neighbor in graph[node]:
+    #         indegree[neighbor] -= 1
+    #         if indegree[neighbor] == 0:
+    #             q.append(neighbor)
+    # return res if len(graph) == len(res) else None
+
+
 def task_scheduling(tasks: list[str], requirements: list[list[str]]) -> list[str]:
+    # graph = {t : [] for t in tasks}
+    # for a,b in requirements:
+    #     graph[a].append(b)
+    # return topo_sort(graph) or []
+
     graph = {t : [] for t in tasks}
     for a,b in requirements:
         graph[a].append(b)

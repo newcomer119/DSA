@@ -10,38 +10,74 @@
 from collections import deque
 
 def get_knight_shortest_path(x: int, y: int) -> int:
+    # def get_neighbors(coord):
+    #     res = []
+    #     row,col = coord
+    #     delta_row = [-2, -2, -1, 1, 2, 2, 1, -1]
+    #     delta_col = [-1,  1,  2, 2, 1, -1, -2, -2]
+
+    #     for i in range(len(delta_row)):
+    #         r = row + delta_row[i]
+    #         c = col + delta_col[i]
+    #         res.append((r,c))
+    #     return res
+
     def get_neighbors(coord):
         res = []
         row,col = coord
-        delta_row = [-2, -2, -1, 1, 2, 2, 1, -1]
-        delta_col = [-1,  1,  2, 2, 1, -1, -2, -2]
-
+        delta_row = [-2,-2,-1,1,2,2,1,-1]
+        delta_col = [-1,1,2,2,1,-1,-2,-2]
         for i in range(len(delta_row)):
             r = row + delta_row[i]
             c = col + delta_col[i]
             res.append((r,c))
-        return res
+
+        return res 
+
 
     def bfs(start):
-        visited = {start}
+        visited ={start}
         steps = 0
-        queue = deque([start])
-
+        queue =deque([start])
         while queue:
+
             n = len(queue)
             for _ in range(n):
                 node = queue.popleft()
                 if node == (y,x):
                     return steps
+
                 for neighbor in get_neighbors(node):
                     if neighbor in visited:
                         continue
+
                     queue.append(neighbor)
                     visited.add(neighbor)
-            steps += 1
-        return steps
+
+                steps += 1
+
+            return steps
 
     return bfs((0,0))
+    #     visited = {start}
+    #     steps = 0
+    #     queue = deque([start])
+
+    #     while queue:
+    #         n = len(queue)
+    #         for _ in range(n):
+    #             node = queue.popleft()
+    #             if node == (y,x):
+    #                 return steps
+    #             for neighbor in get_neighbors(node):
+    #                 if neighbor in visited:
+    #                     continue
+    #                 queue.append(neighbor)
+    #                 visited.add(neighbor)
+    #         steps += 1
+    #     return steps
+
+    # return bfs((0,0))
 
 
 # --- Daily tests ---

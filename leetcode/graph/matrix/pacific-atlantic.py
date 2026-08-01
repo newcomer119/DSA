@@ -28,40 +28,36 @@ from collections import deque
 def pacific_atlantic_water_flow(heights: list[list[int]]) -> list[list[int]]:
     if not heights or not heights[0]:
         return []
-
+    
     rows, cols = len(heights), len(heights[0])
 
-    def get_neighbors(r, c):
-        for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            nr, nc = r + dr, c + dc
+    def get_neighbors(r,c):
+        for dr,dc in ((1,0),(-1,0),(0,1),(0,-1)):
+            nr = r + dr
+            nc = c + dc
             if 0 <= nr < rows and 0 <= nc < cols:
-                yield nr, nc
+                yield nr,nc
 
-    def bfs(starts):
-        q = deque(starts)
-        visited = set(starts)
-
+    def bfs(start):
+        q = deque(start)
+        visited = set(start)
         while q:
-            r, c = q.popleft()
-            for nr, nc in get_neighbors(r, c):
-                if (nr, nc) in visited:
+            r,c = q.popleft()
+            for nr,nc in get_neighbors(r,c):
+                if (nr,nc) in visited:
                     continue
-                # reverse-flow condition (ocean -> inland)
                 if heights[nr][nc] < heights[r][c]:
-                    continue
-                visited.add((nr, nc))
-                q.append((nr, nc))
+                    continue 
+                visited.add((nr,nc))
+                q.append((nr,nc))
 
-        return visited
 
-    pacific_starts = [(0, c) for c in range(cols)] + [(r, 0)
-                                                      for r in range(rows)]
-    atlantic_starts = [(rows - 1, c) for c in range(cols)] + \
-        [(r, cols - 1) for r in range(rows)]
+        return visited 
 
+    pacific_starts = [(0,c) for c in range(cols)] + [(r, 0) for r in range(rows)]
+    atlantic_starts = [(rows-1,c) for c in range(cols)] + [(r,cols - 1) for r in range(rows)]
     pac = bfs(pacific_starts)
     atl = bfs(atlantic_starts)
-
     ans = [[r, c] for (r, c) in (pac & atl)]
     ans.sort()
     return ans

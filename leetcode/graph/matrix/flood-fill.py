@@ -38,17 +38,31 @@
 from collections import deque
 
 def flood_fill(r: int, c: int, replacement: int, image: list[list[int]]) -> list[list[int]]:
-    num_rows,num_cols = len(image), len(image[0])
+    # num_rows,num_cols = len(image), len(image[0])
+    # def get_neighbors(coord,color):
+    #     row,col = coord
+    #     delta_row = [-1, 0, 1, 0]
+    #     delta_col = [0, 1, 0, -1]
+    #     for i in range(len(delta_row)):
+    #         neighb_row = row + delta_row[i]
+    #         neighb_col = col + delta_col[i]
+    #         if 0 <= neighb_row < num_rows and 0 <= neighb_col < num_cols:
+    #             if image[neighb_row][neighb_col] == color:
+    #                 yield neighb_row,neighb_col
+
+
+    num_rows,num_cols = len(image),len(image[0])
     def get_neighbors(coord,color):
         row,col = coord
-        delta_row = [-1, 0, 1, 0]
-        delta_col = [0, 1, 0, -1]
+        delta_row = [-1,0,1,0]
+        delta_col = [0,1,0,-1]
         for i in range(len(delta_row)):
             neighb_row = row + delta_row[i]
             neighb_col = col + delta_col[i]
             if 0 <= neighb_row < num_rows and 0 <= neighb_col < num_cols:
                 if image[neighb_row][neighb_col] == color:
                     yield neighb_row,neighb_col
+
     def bfs(root):
         queue = deque([root])
         visited = [[False for c in range(num_cols)] for r in range(num_rows)]
@@ -57,17 +71,37 @@ def flood_fill(r: int, c: int, replacement: int, image: list[list[int]]) -> list
         image[r][c] = replacement
         visited[r][c] = True
 
-        while len(queue) > 0:
+        while queue:
             node = queue.popleft()
-            for neighbor in get_neighbors(node,color):
+            for neighbor in get_neighbors(node, color):
                 r,c = neighbor
                 if visited[r][c]:
                     continue
+
                 image[r][c] = replacement
                 queue.append(neighbor)
                 visited[r][c] = True
     bfs((r, c))
     return image
+
+    #     queue = deque([root])
+    #     visited = [[False for c in range(num_cols)] for r in range(num_rows)]
+    #     r,c = root
+    #     color = image[r][c]
+    #     image[r][c] = replacement
+    #     visited[r][c] = True
+
+    #     while len(queue) > 0:
+    #         node = queue.popleft()
+    #         for neighbor in get_neighbors(node,color):
+    #             r,c = neighbor
+    #             if visited[r][c]:
+    #                 continue
+    #             image[r][c] = replacement
+    #             queue.append(neighbor)
+    #             visited[r][c] = True
+    # bfs((r, c))
+    # return image
 
 
 # --- Daily tests ---

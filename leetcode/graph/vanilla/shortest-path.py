@@ -20,24 +20,45 @@ def shortest_path(graph: list[list[int]], a: int, b: int) -> int:
     def get_neighbors(node):
         return graph[node]
 
-    def bfs(root, target):
+    def bfs(root,target):
         queue = deque([root])
         visited = {root}
         level = 0
-        while len(queue) > 0:
+        while queue:
             n = len(queue)
             for _ in range(n):
                 node = queue.popleft()
                 if node == target:
                     return level
+
                 for neighbor in get_neighbors(node):
                     if neighbor in visited:
-                        continue
+                        continue 
+
                     queue.append(neighbor)
                     visited.add(neighbor)
 
             level += 1
         return level
+
+    # def bfs(root, target):
+    #     queue = deque([root])
+    #     visited = {root}
+    #     level = 0
+    #     while len(queue) > 0:
+    #         n = len(queue)
+    #         for _ in range(n):
+    #             node = queue.popleft()
+    #             if node == target:
+    #                 return level
+    #             for neighbor in get_neighbors(node):
+    #                 if neighbor in visited:
+    #                     continue
+    #                 queue.append(neighbor)
+    #                 visited.add(neighbor)
+
+    #         level += 1
+    #     return level
     return bfs(a, b)
 
 

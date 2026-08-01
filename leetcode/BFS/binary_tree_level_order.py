@@ -7,23 +7,42 @@ class Node:
         self.right = right
 
 def level_order_traversal(root: Node) -> list[list[int]]:
-    result = []
+    res = []
     if root is None:
-        return result
+        return res
 
     queue = deque([root])
-    while len(queue)  > 0:
+    while queue:
         n = len(queue)
         new_level = []
         for _ in range(n):
             node = queue.popleft()
             new_level.append(node.val)
-            for child in [node.left,node.right]:
+            for child in [node.left , node.right]:
                 if child is not None:
                     queue.append(child)
 
-        result.append(new_level)
-    return result
+
+        res.append(new_level)
+    return res
+    
+    # result = []
+    # if root is None:
+    #     return result
+
+    # queue = deque([root])
+    # while len(queue)  > 0:
+    #     n = len(queue)
+    #     new_level = []
+    #     for _ in range(n):
+    #         node = queue.popleft()
+    #         new_level.append(node.val)
+    #         for child in [node.left,node.right]:
+    #             if child is not None:
+    #                 queue.append(child)
+
+    #     result.append(new_level)
+    # return result
 
 # this function builds a tree from input; you don't have to modify it
 # learn more about how trees are encoded in https://algo.monster/problems/serializing_tree

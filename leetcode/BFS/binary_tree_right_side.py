@@ -7,13 +7,30 @@ class Node:
         self.right = right
 
 def binary_tree_right_side_view(root: Node) -> list[int]:
-    res = []
+    # res = []
+    # if root is None:
+    #     return res
+    # queue = deque([root])
+    # while len(queue) > 0:
+    #     n = len(queue)
+    #     res.append(queue[0].val) # right most node 
+
+    #     for _ in range(n):
+    #         node = queue.popleft()
+    #         if node.right is not None:
+    #             queue.append(node.right)
+    #         if node.left is not None:
+    #             queue.append(node.left)
+    # return res
+
+    res= []
     if root is None:
         return res
-    queue = deque([root])
-    while len(queue) > 0:
+
+    queue =deque([root])
+    while queue:
         n = len(queue)
-        res.append(queue[0].val) # right most node 
+        res.append(queue[0].val)
 
         for _ in range(n):
             node = queue.popleft()
@@ -22,8 +39,6 @@ def binary_tree_right_side_view(root: Node) -> list[int]:
             if node.left is not None:
                 queue.append(node.left)
     return res
-
-
 def build_tree(nodes, f):
     val = next(nodes)
     if val == "x":

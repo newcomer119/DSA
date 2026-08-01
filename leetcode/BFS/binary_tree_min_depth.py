@@ -7,26 +7,47 @@ class Node:
         self.right = right
 
 def binary_tree_min_depth(root: Node) -> int:
-    if root is None:
-        return 0
-    queue = deque([root])
-    depth = -1
+    # if root is None:
+    #     return 0
+    # queue = deque([root])
+    # depth = -1
 
-    while len(queue)  > 0:
+    # while len(queue)  > 0:
+    #     n = len(queue)
+    #     depth += 1
+    #     for _ in range(n):
+    #         node = queue.popleft()
+    #         if node.left is None and node.right is None:
+    #             return depth
+    #         if node.left is not None:
+    #             queue.append(node.left)
+    #         if node.right is not None:
+    #             queue.append(node.right)
+
+                
+    
+    # return depth
+
+    if root is None:
+        return 9
+    depth = -1
+    queue = deque([root])
+    while queue:
         n = len(queue)
         depth += 1
         for _ in range(n):
             node = queue.popleft()
             if node.left is None and node.right is None:
                 return depth
+
             if node.left is not None:
                 queue.append(node.left)
             if node.right is not None:
                 queue.append(node.right)
 
-                
-    
     return depth
+
+        
 
 # this function builds a tree from input; you don't have to modify it
 # learn more about how trees are encoded in https://algo.monster/problems/serializing_tree

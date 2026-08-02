@@ -1,10 +1,5 @@
 # 210. Course Schedule II
-# Solved
-# Medium
-# Topics
-# premium lock icon
-# Companies
-# Hint
+
 # There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
 
 # For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
@@ -61,15 +56,13 @@ class Solution:
         res = []
         q = deque()
         indegree = self.find_indegree(graph,numCourses)
-
         for node in indegree:
             if indegree[node] == 0:
                 q.append(node)
 
         while q:
-            node =  q.popleft()
+            node = q.popleft()
             res.append(node)
-
             for neighbor in graph[node]:
                 indegree[neighbor] -= 1
                 if indegree[neighbor] == 0:
@@ -77,7 +70,25 @@ class Solution:
 
 
         return res if len(res) == len(graph) else []
+        # res = []
+        # q = deque()
+        # indegree = self.find_indegree(graph,numCourses)
 
+        # for node in indegree:
+        #     if indegree[node] == 0:
+        #         q.append(node)
+
+        # while q:
+        #     node = q.popleft()
+        #     res.append(node)
+
+        #     for neighbor in graph[node]:
+        #         indegree[neighbor] -= 1
+        #         if indegree[neighbor] == 0:
+        #             q.append(neighbor)
+
+
+        # return res if len(res) == len(graph) else []
 
 # --- Daily tests ---
 if __name__ == "__main__":

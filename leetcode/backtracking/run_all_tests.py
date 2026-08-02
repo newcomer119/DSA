@@ -372,6 +372,25 @@ def test_palindrome_partition() -> tuple[int, int]:
     return passed, len(tests)
 
 
+def test_n_queens() -> tuple[int, int]:
+    mod = load_module("pruining/n-queens.py")
+    tests = [
+        (1, [["Q"]]),
+        (2, []),
+        (4, [
+            [".Q..", "...Q", "Q...", "..Q."],
+            ["..Q.", "Q...", "...Q", ".Q.."],
+        ]),
+    ]
+    passed = 0
+    for n, expected in tests:
+        got = sorted(mod.solve_n_queens(n))
+        exp = sorted(expected)
+        if run_case(f"n={n}", got, exp):
+            passed += 1
+    return passed, len(tests)
+
+
 # ---------------------------------------------------------------------------
 # combination-search
 # ---------------------------------------------------------------------------
@@ -437,6 +456,7 @@ ALL_TESTS = {
     "permutations": ("additional-states", test_permutations),
     "generate-parentheses": ("additional-states", test_generate_parentheses),
     "palindrome-partition": ("pruining", test_palindrome_partition),
+    "n-queens": ("pruining", test_n_queens),
     "phone-letters": ("combination-search", test_phone_letter_combinations),
     "letter-combination": ("combination-search", test_letter_combination),
     "ternary-paths": ("combination-search", test_ternary_paths),

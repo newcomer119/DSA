@@ -1,47 +1,42 @@
-# Find count of shortest largest subarray with sum equal to k
-def shortest_subarray_sum_k(nums, k):
-    n =len(nums)
-    max_length = 0
-    count = 0
-    for start in range(n):
-        sum = 0
-        for end in range(start , n):
-            sum += nums[end]
-            if sum == k:
-                length = end - start + 1
-                if length > max_length:
-                    max_length = length
-                    count = 1
-                elif length == max_length:
-                    count += 1
-    return count
+# 242. Valid Anagram
+# https://leetcode.com/problems/valid-anagram/
+#
+# Return true if t is an anagram of s (same characters, same counts).
+#
+# Example:
+# s = "anagram", t = "nagaram" -> True
+# s = "rat", t = "car" -> False
 
-def shortest_subarray_sum_k_optimized(nums, k):
-    mp1 = {0 : 0}
-    mp2 = {0 : 0}
-    pSum = 0
-    maxLength = 0
-    minLength = float('inf')
-    n = len(nums)
 
-    for j in range(1, n + 1):
-        pSum  += nums[j - 1]
-        target = pSum - k
-        
-        if target in mp1:
-            i = mp1[target] + 1  # Fixed: changed mp to mp1
-            currLength = j - i + 1
-            if currLength > maxLength:  
-                maxLength = currLength
+def valid_anagram(s: str, t: str) -> bool:
+    if len(s) != len(t):
+        return False
 
-        if target in mp2:
-            i = mp2[target] + 1
-            currLength = j - i + 1
-            if currLength < minLength:
-                minLength = currLength
+    freq_map = {}
+    for char in s:
+        freq_map[char] = freq_map.get(char, 0) + 1
 
-        if pSum not in mp1:
-            mp1[pSum] = j
-        mp2[pSum] = j
+    for char in t:
+        if char not in freq_map:
+            return False
+        freq_map[char] -= 1
+        if freq_map[char] < 0:
+            return False
 
-    return maxLength, minLength
+    return True
+
+
+# --- Daily tests ---
+if __name__ == "__main__":
+    TESTS = [
+        ("anagram", "nagaram", True),
+        ("rat", "car", False),
+        ("a", "a", True),
+    ]
+    passed = 0
+    for s, t, exp in TESTS:
+        got = valid_anagram(s, t)
+        ok = got == exp
+        passed += ok
+        print(f"[{'PASS' if ok else 'FAIL'}] '{s}' vs '{t}' -> {got}")
+    print(f"\n{passed}/{len(TESTS)} passed")

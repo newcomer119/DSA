@@ -1,42 +1,49 @@
-# find the count of subarrays with sum equal to k  
+# 560. Subarray Sum Equals K
+# https://leetcode.com/problems/subarray-sum-equals-k/
+# GFG: https://www.geeksforgeeks.org/number-subarrays-sum-exactly-equal-k/
+#
+# Count the number of contiguous subarrays whose sum equals k.
+#
+# Example:
+# nums = [1, 1, 1], k = 2 -> 2
+# nums = [1, 2, 3], k = 3 -> 2
 
-# brute force 
-def main():
-    n = int(input("Enter the number of elements in the array: "))
-    # Using 1-indexed style list matching your input logic
-    arr = [0] * (n + 1)
-    print("Enter elements of the array: ")
 
-    for i in range(1, n + 1):
-        arr[i] = int(input())
-
-    k = int(input("Enter the value of k: "))
+def count_subarray_sum_brute(nums: list[int], k: int) -> int:
     count = 0
-    
-    # Check all possible subarrays (starting at j and ending at i)
-    for j in range(1, n + 1):
-        csum = 0
-        for i in range(j, n + 1):
-            csum += arr[i]
-            if csum == k:
+    n = len(nums)
+    for i in range(n):
+        curr_sum = 0
+        for j in range(i, n):
+            curr_sum += nums[j]
+            if curr_sum == k:
                 count += 1
-
-    print("The count of subarrays with sum equal to k is: ", count)
-
+    return count
 
 
-# Optimized with prefix and hashmap
-def optimized_count(arr, k):
-    # Initialize prefix_sum as a dictionary with sum 0 having a frequency of 1
+def optimized_count(arr: list[int], k: int) -> int:
     prefix_sum = {0: 1}
-    current_sum = 0  # Avoid using 'sum' as it's a built-in Python function
+    current_sum = 0
     count = 0
     for num in arr:
         current_sum += num
-        # Check if (current_sum - k) exists in our prefix sum dictionary
         if (current_sum - k) in prefix_sum:
             count += prefix_sum[current_sum - k]
-        # Safely increment the frequency of current_sum
         prefix_sum[current_sum] = prefix_sum.get(current_sum, 0) + 1
-
     return count
+
+
+# --- Daily tests ---
+if __name__ == "__main__":
+    TESTS = [
+        ([1, 1, 1], 2, 2),
+        ([1, 2, 3], 3, 2),
+        ([1, -1, 0], 0, 3),
+    ]
+    passed = 0
+    for nums, k, exp in TESTS:
+        got = optimized_count(nums, k)
+        ok = got == exp
+        passed += ok
+        print(f"[{'PASS' if ok else 'FAIL'}] nums={nums}, k={k} -> {got}")
+    print(f"\n{passed}/{len(TESTS)} passed")

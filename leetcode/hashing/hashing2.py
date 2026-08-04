@@ -1,53 +1,34 @@
-# we are given an array of numbers we need to find and print any number 
-#  with maximum and minimum frequencies 
+# Element with Minimum and Maximum Frequency
+# GFG: https://www.geeksforgeeks.org/element-with-minimum-and-maximum-frequency-in-an-array/
+#
+# Given an array, print one element with minimum frequency and one with maximum frequency.
+# If multiple answers exist, return any valid pair.
+#
+# Example:
+# arr = [1, 2, 2, 3, 3, 3]
+# Output: (1, 3)
 
-# n = int(input())
-# a  = list(map(int, input().split()))
-
-# min_freq = float('inf')
-# max_freq = 0
-# min_elem = -1
-# max_elem = -1
-
-# for i in range(n):
-#     count = 0
-#     for j in range(n):
-#         if a[i] == a[j]:
-#             count += 1
-    
-#     if count < min_freq:
-#         count = min_freq
-#         min_elem = a[i]
+from collections import Counter
 
 
-#     if count > max_freq:
-#         count = max_freq
-#         max_elem = a[i]
+def min_max_frequency_elements(arr: list[int]) -> tuple[int, int]:
+    freq = Counter(arr)
+    min_elem = min(freq, key=lambda x: freq[x])
+    max_elem = max(freq, key=lambda x: freq[x])
+    return min_elem, max_elem
 
-# print(min_elem, max_elem)
 
-
-# Using hashmap 
-
-n = int(input())
-k = {}
-
-for _ in range(n):
-    y = int(input)
-    k[y] = k.get(y,0) + 1
-
-minFreq = float('inf')
-maxFreq = 0
-minElem = -1
-maxElem = -1
-
-for number , count in k.items():
-    if count < minFreq:
-        minFreq = count
-        minElem = number
-
-    if count > maxFreq:
-        maxFreq = count
-        maxElem = number
-
-print(minElem, maxElem)
+# --- Daily tests ---
+if __name__ == "__main__":
+    TESTS = [
+        ([1, 2, 2, 3, 3, 3], (1, 3)),
+        ([4, 4, 4, 4], (4, 4)),
+        ([7, 8, 8, 9], (7, 8)),
+    ]
+    passed = 0
+    for arr, exp in TESTS:
+        got = min_max_frequency_elements(arr)
+        ok = got == exp
+        passed += ok
+        print(f"[{'PASS' if ok else 'FAIL'}] {arr} -> {got}")
+    print(f"\n{passed}/{len(TESTS)} passed")

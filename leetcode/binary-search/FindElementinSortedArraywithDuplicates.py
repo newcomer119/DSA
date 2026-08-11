@@ -18,35 +18,33 @@
 
 
 def find_first_occurrence(arr: list[int], target: int) -> int:
-    # l,r = 0, len(arr) - 1
-    # ans = -1
-    # while l<=r:
-    #     mid = (l + r) // 2
-    #     if arr[mid] == target:
-    #         ans = mid
-    #         r = mid - 1
-    #     elif arr[mid] < target:
-    #         l = mid + 1
-
-    #     else:
-    #         r= mid - 1
-
-    # return ans
-
-
-    left , right = 0 ,len(arr) - 1
     ans = -1
-    while left <= right:
-        mid = (left + right) // 2
+    l,r = 0,len(arr) - 1
+    while l <= r:
+        mid = (l + r) // 2
         if arr[mid] == target:
             ans = mid
-            right = mid - 1
+            r = mid - 1
         elif arr[mid] < target:
-            left = mid + 1
-        else:
-            right = mid - 1
+            l = mid + 1
+        else :
+            r = mid - 1
 
     return ans 
+
+    # left , right = 0 ,len(arr) - 1
+    # ans = -1
+    # while left <= right:
+    #     mid = (left + right) // 2
+    #     if arr[mid] == target:
+    #         ans = mid
+    #         right = mid - 1
+    #     elif arr[mid] < target:
+    #         left = mid + 1
+    #     else:
+    #         right = mid - 1
+
+    # return ans 
 
 
 # --- Daily tests ---

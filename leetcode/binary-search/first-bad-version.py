@@ -17,29 +17,16 @@
 # Output: 1
 
 def firstBadVersion(n: int) -> int:
-        # l,r = 0 ,n
-        # ans = -1
-        # while l <= r:
-        #     mid = (l + r) // 2
-        #     if isBadVersion(mid):
-        #         ans = mid
-        #         r = mid-1
-        #     else:
-        #         l = mid + 1
-
-        # return ans
-
-        l,r = 0, n
+        l,r = 0,n
         ans = -1
-        while l <=r :
+        while l <= r:
             mid = (l + r) // 2
             if isBadVersion(mid):
                 ans = mid
                 r = mid - 1
-            else : 
+            else:
                 l = mid + 1
         return ans 
-
 # --- Daily tests ---
 if __name__ == "__main__":
     TESTS = [(5, 4), (1, 1), (10, 1), (10, 10)]

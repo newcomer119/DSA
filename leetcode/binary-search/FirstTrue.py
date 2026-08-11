@@ -1,33 +1,33 @@
 # Input: arr = [false, false, true, true, true]
-
 # Output: 2
 
 
 def find_boundary(arr: list[bool]) -> int:
-    # left, right = 0 ,len(arr) - 1
-    # boundary_index = -1
-
-    # while left <= right:
-    #     mid = (left + right) // 2
-    #     if arr[mid]:
-    #         boundary_index = mid
-    #         right = mid- 1
-    #     else:
-    #         left = mid + 1
-    # return boundary_index\
-
-    l, r = 0, len(arr) - 1
+    l,r = 0,len(arr) - 1
     ans = -1
     while l <= r:
         mid = (l + r) // 2
-        if arr[mid]:
+        if arr[mid] == True:
             ans = mid
             r = mid - 1
 
-        else : 
+        else:
             l = mid + 1
 
-    return ans
+    return ans 
+
+    # l, r = 0, len(arr) - 1
+    # ans = -1
+    # while l <= r:
+    #     mid = (l + r) // 2
+    #     if arr[mid]:
+    #         ans = mid
+    #         r = mid - 1
+
+    #     else : 
+    #         l = mid + 1
+
+    # return ans
 
 
 # --- Daily tests ---

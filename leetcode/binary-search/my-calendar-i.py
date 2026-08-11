@@ -20,50 +20,44 @@
 # At most 1000 calls will be made to book.
 
 
-
 class MyCalendar:
-
     def __init__(self):
+        # self.calendar = []
         self.calendar = []
 
     def book(self, start: int, end: int) -> bool:
-        # left= 0
-        # right = len(self.calendar) - 1
+        l,r = 0, len(self.calendar) - 1
+        idx = len(self.calendar)
+
+        while l <= r:
+            mid = (l + r) // 2
+            if self.calendar[mid][0] > start:
+                idx = mid
+                r = mid - 1
+            else:
+                l = mid  + 1
+
+        if (idx > 0 and self.calendar[idx-1][1] > start) or (idx < len(self.calendar) and self.calendar[idx][0] < end):
+            return False
+        
+        self.calendar.insert(idx, (start,end))
+        return True
+
+        # left,right = 0, len(self.calendar) - 1
         # idx = len(self.calendar)
-        # while left <= right : 
+
+        # while left <= right:
         #     mid = (left + right) // 2
         #     if self.calendar[mid][0] > start:
         #         idx = mid
         #         right = mid - 1
         #     else:
         #         left = mid + 1
-
         # if (idx > 0 and self.calendar[idx-1][1] > start) or (idx < len(self.calendar) and self.calendar[idx][0] < end):
         #     return False
-        # self.calendar.insert(idx, (start, end))
-        # return True
 
-        left,right = 0, len(self.calendar) - 1
-        idx = len(self.calendar)
-
-        while left <= right:
-            mid = (left + right) // 2
-            if self.calendar[mid][0] > start:
-                idx = mid
-                right = mid - 1
-
-            else:
-                l = mid + 1
-
-
-        # we are checking if there is an interval before the spot we want to insert and if previous interval end before new one start  or 
-        # we are checking that a new interval is currently sitting at end position and next interval starts before this one ends.
-
-        if (idx > 0 and self.calendar[idx-1][1] > start) or (idx < len(self.calendar) and self.calendar[idx][0] < end):
-            return False
-
-        self.calendar.insert(idx, (start,end))
-        return True 
+        # self.calendar.insert(idx, (start,end))
+        # return True 
 
 
 # --- Daily tests ---

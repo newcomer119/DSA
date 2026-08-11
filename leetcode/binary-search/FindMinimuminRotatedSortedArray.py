@@ -8,28 +8,15 @@
 
 
 def find_min_rotated(arr: list[int]) -> int:
-    # left,right = 0 , len(arr) - 1
-    # result = -1
-
-    # while left <= right:
-    #     mid = (left + right) // 2
-    #     if arr[mid] <= arr[-1]:
-    #         result = mid
-    #         right = mid - 1
-    #     else:
-    #         left = mid + 1
-    # return result
-
-
-    left, right = 0 ,len(arr) - 1
     res = -1
-    while left <= right :
-        mid = (left + right) // 2
+    l,r = 0,len(arr) - 1
+    while l <= r:
+        mid = (l + r) // 2
         if arr[mid] <= arr[-1]:
             res = mid
-            right = mid - 1
+            r = mid - 1
         else:
-            left = mid + 1
+            l = mid + 1
 
     return res
 

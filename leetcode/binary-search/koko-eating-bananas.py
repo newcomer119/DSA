@@ -7,17 +7,12 @@
 # Input: piles = [3,6,7,11], h = 8
 # Output: 4
 # Example 2:
-
 # Input: piles = [30,11,23,4,20], h = 5
 # Output: 30
 # Example 3:
-
 # Input: piles = [30,11,23,4,20], h = 6
 # Output: 23
- 
-
 # Constraints:
-
 # 1 <= piles.length <= 104
 # piles.length <= h <= 109
 # 1 <= piles[i] <= 109
@@ -25,46 +20,45 @@
 from math import ceil,inf
 from typing import List
 
-
-# def can_finish_eating(piles, h, k):
-#     hours_used = 0
-#     for p in piles:
-#         hours_used += ceil(float(p)/k)
-#     return hours_used <= h
-    
-# def minEatingSpeed(piles: List[int], h: int) -> int:
-#     left = 1 
-#     right = 1000000000
-#     ans = -1
-#     while left <= right:
-#         mid = (left + right) // 2
-#         if can_finish_eating(piles, h, mid):
-#             ans = mid
-#             right = mid - 1
-#         else:
-#             left = mid + 1
-#     return ans
-
-def can_finish(piles, h, k):
+def can_finish(piles,h,k):
     hours = 0
     for p in piles:
         hours += ceil(float(p)/k)
     return hours <= h
 
 
-def minEatingSpeed(piles: List[int], h: int) -> int:
-    left, right = 1, 1000000000
+def minEatingSpeed(piles , h):
+    l, r = 1 , 1000000000
     ans = -1
-    while left<=right:
-        mid = (left + right) // 2
-        if can_finish(piles, h, mid):
+    while l <= r:
+        mid = (l + r) // 2
+        if can_finish(piles,h,mid):
             ans = mid
-            right = mid - 1
-
+            r = mid - 1
         else:
-            left = mid + 1
+            l = mid + 1
+    return ans 
 
-    return ans
+# def can_finish(piles, h, k):
+#     hours = 0
+#     for p in piles:
+#         hours += ceil(float(p)/k)
+#     return hours <= h
+   
+# def minEatingSpeed(piles: List[int], h: int) -> int:
+#     left, right = 1, 1000000000
+#     ans = -1
+#     while left<=right:
+#         mid = (left + right) // 2
+#         if can_finish(piles, h, mid):
+#             ans = mid
+#             right = mid - 1
+
+#         else:
+#             left = mid + 1
+#     return ans
+
+
 
 # --- Daily tests ---
 if __name__ == "__main__":

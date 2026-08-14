@@ -9,23 +9,13 @@
 
 
 def remove_duplicates(arr: list[int]) -> int:
-    # slow = 0 
-    # for fast in range(len(arr)):
-    #     if arr[fast] != arr[slow]:
-    #         slow += 1
-    #         arr[slow] = arr[fast]
-
-    # return slow + 1
-
     slow = 0
     for fast in range(len(arr)):
         if arr[fast] != arr[slow]:
             slow += 1
-            arr[slow] = arr[fast]
 
+        arr[slow] = arr[fast]
     return slow + 1
-
-
 # --- Daily tests ---
 if __name__ == "__main__":
     TESTS = [([0, 0, 1, 1, 1, 2, 2], 3, [0, 1, 2]), ([1, 1, 1], 1, [1]), ([1, 2, 3], 3, [1, 2, 3])]

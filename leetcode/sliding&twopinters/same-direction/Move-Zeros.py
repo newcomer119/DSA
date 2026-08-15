@@ -9,18 +9,13 @@
 
 
 def move_zeros(nums: list[int]) -> None:
-    # slow = 0
-    # for fast in range(len(nums)):
-    #     if nums[fast] != 0:
-    #         nums[slow], nums[fast] = nums[fast], nums[slow]
-    #         slow += 1
-
-
     slow = 0
     for fast in range(len(nums)):
         if nums[fast] != 0:
-            nums[slow],nums[fast] = nums[fast], nums[slow]
+            nums[fast],nums[slow] = nums[slow],nums[fast]
             slow += 1
+
+    return nums
 
 
 # --- Daily tests ---

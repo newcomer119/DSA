@@ -5,28 +5,17 @@
 
 
 def subarray_sum_longest(nums: list[int], target: int) -> int:
-    wsum = 0
+    wsum =0
     length = 0
-    left = 0
+    left =0 
     for right in range(len(nums)):
         wsum += nums[right]
         while wsum > target:
             wsum -= nums[left]
             left += 1
-
-        length = max(length, right - left + 1)
-    return length
+        length = max(length,right - left + 1)
+    return length 
     
-    # wsum = 0
-    # length = 0
-    # left = 0
-    # for right in range(len(nums)):
-    #     wsum += nums[right]
-    #     while wsum > target:
-    #         wsum -= nums[left]
-    #         left += 1
-    #     length = max(length, right - left + 1)
-    # return length
 
 
 # --- Daily tests ---

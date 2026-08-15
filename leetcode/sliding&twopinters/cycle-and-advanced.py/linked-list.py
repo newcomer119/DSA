@@ -7,50 +7,45 @@
 # Examples
 # Example 1
 # Input:
-
-
-
 # Output:
-
 # true
-
 # Example 2
 # Input:
-
-
-
 # Output:
-
 # false
-
 # Constraints
 # 1 <= len(nodes) <= 10^5
-
 
 class Node:
     def __init__(self, val, next=None):
         self.val = val
         self.next = next
-
 def has_cycle(head: Node) -> bool:
-    # If the list is empty or has only one node, there can be no cycle
     if not head or not head.next:
-        return False
-    
-    tortoise = head
-    hare = head
-    
-    # Hare moves twice as fast as the tortoise
+        return False 
+    tortoise = head 
+    hare = head 
     while hare and hare.next:
-        tortoise = tortoise.next       # Move 1 step
-        hare = hare.next.next          # Move 2 steps
-        
-        # If they meet, there is a cycle
+        tortoise = tortoise.next 
+        hare = hare.next.next
         if tortoise == hare:
-            return True
-            
-    # If hare reaches the end (None), there is no cycle
-    return False
+            return True 
+
+    return False 
+    # If the list is empty or has only one node, there can be no cycle
+    # if not head or not head.next:
+    #     return False
+    # tortoise = head
+    # hare = head
+    # # Hare moves twice as fast as the tortoise
+    # while hare and hare.next:
+    #     tortoise = tortoise.next       # Move 1 step
+    #     hare = hare.next.next          # Move 2 steps
+    #     # If they meet, there is a cycle
+    #     if tortoise == hare:
+    #         return True
+    # # If hare reaches the end (None), there is no cycle
+    # return False
 
 
 # --- Daily tests ---

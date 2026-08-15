@@ -16,8 +16,13 @@ def range_sum_query_immutable(nums: list[int], left: int, right: int) -> int:
     # return cumm_sum[right + 1] - cumm_sum[left]
     # Brute force 
 
+    # total = 0
+    # for i in range(left,right + 1):
+    #     total += nums[i]
+    # return total
+
     total = 0
-    for i in range(left,right + 1):
+    for i in range(left, right + 1):
         total += nums[i]
     return total
 

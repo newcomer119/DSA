@@ -6,26 +6,29 @@
 
 
 def subarray_sum(nums: list[int], target: int) -> list[int]:
-    # prefix_sum = {0:0}
-    # curr_sum = 0
-    # for i in range(len(nums)):
-    #     curr_sum += nums[i]
-    #     complement = curr_sum - target
-    #     if complement in prefix_sum:
-    #         return [prefix_sum[complement], i+1]
-    #     prefix_sum[curr_sum] = i + 1
-    # return []
-
     prefix = {0 : 0}
     curr_sum = 0
     for i in range(len(nums)):
         curr_sum += nums[i]
         complement = curr_sum - target
         if complement in prefix:
-            return[prefix[complement], i + 1]
+            return [prefix[complement], i + 1]
         prefix[curr_sum] = i + 1
-
     return []
+
+
+
+
+    # prefix = {0 : 0}
+    # curr_sum = 0
+    # for i in range(len(nums)):
+    #     curr_sum += nums[i]
+    #     complement = curr_sum - target
+    #     if complement in prefix:
+    #         return[prefix[complement], i + 1]
+    #     prefix[curr_sum] = i + 1
+
+    # return []
 
 
 # --- Daily tests ---

@@ -9,33 +9,31 @@
 
 from collections import Counter
 def least_consecutive_cards_to_match(cards: list[int]) -> int:
-    window  = Counter()
+    window = Counter()
     left = 0
     shortest = len(cards) + 1
-
     for right in range(len(cards)):
         window[cards[right]] += 1
         while window[cards[right]] == 2:
-            # we have found a subarray
-            shortest = min(shortest , right -left + 1)
+            shortest = min(shortest, right - left + 1)
             window[cards[left]] -= 1
             left += 1
-
     return shortest if shortest != len(cards) + 1 else -1
-    
-    # window  : Counter[int] = Counter()
+        
+    # window  = Counter()
     # left = 0
     # shortest = len(cards) + 1
 
     # for right in range(len(cards)):
     #     window[cards[right]] += 1
     #     while window[cards[right]] == 2:
-    #         # there is a subbarray 
-    #         shortest = min(shortest, right - left + 1)
+    #         # we have found a subarray
+    #         shortest = min(shortest , right -left + 1)
     #         window[cards[left]] -= 1
     #         left += 1
-    # return shortest if shortest != len(cards) + 1 else -1
 
+    # return shortest if shortest != len(cards) + 1 else -1
+  
 
 # --- Daily tests ---
 if __name__ == "__main__":

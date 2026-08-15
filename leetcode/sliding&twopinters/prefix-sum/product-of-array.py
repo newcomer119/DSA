@@ -7,19 +7,32 @@
 
 
 def product_of_array_except_self(nums: list[int]) -> list[int]:
-    length = len(nums)
-    res = [1] * length
+    n = len(nums)
     left = 1
+    res = [1] * n
     for i in range(len(nums)):
-        res[i] *= left
+        res[i] *= left 
         left *= nums[i]
 
     right = 1
     for i in reversed(range(len(nums))):
         res[i] *= right
         right *= nums[i]
+
+    return res 
+    # length = len(nums)
+    # res = [1] * length
+    # left = 1
+    # for i in range(len(nums)):
+    #     res[i] *= left
+    #     left *= nums[i]
+
+    # right = 1
+    # for i in reversed(range(len(nums))):
+    #     res[i] *= right
+    #     right *= nums[i]
         
-    return res
+    # return res
 
 
 # --- Daily tests ---

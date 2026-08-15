@@ -7,28 +7,27 @@
 def subarray_sum_shortest(nums: list[int], target: int) -> int:
    # shortest subarray whoose sum will be equivalent to target 
     length = len(nums) + 1
-    left = 0
+    left =0 
     wsum = 0
     for right in range(len(nums)):
         wsum += nums[right]
         while wsum >= target:
-            length = min(length, right - left  + 1)
+            length = min(length, right - left + 1)
             wsum -= nums[left]
             left += 1
 
-    if length > len(nums):return 0
+    if length > len(nums):
+        return 0
 
-    return length
-
-    
-    # window_sum = 0
-    # length = len(nums) + 1 # So len(nums) + 1 is impossible as a real answer, which makes it a safe “placeholder”
+    return length 
+    # length = len(nums) + 1
     # left = 0
+    # wsum = 0
     # for right in range(len(nums)):
-    #     window_sum += nums[right] 
-    #     while window_sum >= target:
-    #         length = min(length, right - left + 1)
-    #         window_sum -= nums[left] 
+    #     wsum += nums[right]
+    #     while wsum >= target:
+    #         length = min(length, right - left  + 1)
+    #         wsum -= nums[left]
     #         left += 1
     # if length > len(nums):
     #     return 0

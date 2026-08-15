@@ -19,18 +19,10 @@ class Node:
         self.next = next
 
 def middle_of_linked_list(head: Node) -> int:
-    # slow = fast = head
-    # while fast and fast.next:
-    #     fast = fast.next.next
-    #     slow = slow.next
-        
-    # return slow.val
-
-    slow= fast = head
+    fast = slow = head
     while fast and fast.next:
-        fast = fast.next.next 
-        slow = slow.next
-
+        fast = fast.next.next
+        slow = slow.next 
     return slow.val
 def build_list(nodes, f):
     val = next(nodes, None)

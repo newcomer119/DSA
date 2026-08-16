@@ -7,27 +7,12 @@ class Node:
         self.right = right
 
 def valid_bst(root: Node) -> bool:
-    # def dfs(root,min_val,max_val):
-    #     if not root:
-    #         return True
-
-    #     if not (min_val < root.val < max_val):
-    #         return False
-
-    #     return dfs(root.left, min_val, root.val) and dfs(root.right, root.val, max_val)
-
-    # return dfs(root,-inf,inf)
-        
-
     def dfs(root,min_val,max_val):
         if not root:
-            return True
-
+            return True 
         if not (min_val < root.val < max_val):
-            return False
-
-        return dfs(root.left,min_val, root.val) and dfs(root.right,root.val, max_val)
-        
+            return False 
+        return dfs(root.left,min_val,root.val) and dfs(root.right,root.val,max_val)
     return dfs(root,-inf,inf)
 # this function builds a tree from input; you don't have to modify it
 # learn more about how trees are encoded in https://algo.monster/problems/serializing_tree

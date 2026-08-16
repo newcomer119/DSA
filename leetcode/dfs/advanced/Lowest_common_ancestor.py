@@ -5,36 +5,21 @@ class Node:
         self.right = right
 
 def lca(root: Node, node1: Node, node2: Node) -> Node:
-    # if not root:
-    #     return None
-    # if root in (node1,node2):
-    #     return root
-    # left = lca(root.left,node1,node2)
-    # right = lca(root.right,node1,node2)
-    # if left and right:
-    #     return root
-    # if left:
-    #     return left
-    # if right:
-    #     return right
-    # return None
-
     if not root:
-        return None
-
-    if root in(node1,node2):
+        return None 
+    if root in (node1, node2):
         return root 
     left = lca(root.left,node1,node2)
     right = lca(root.right,node1,node2)
     if left and right:
         return root 
-
     if left:
-        return left
+        return left 
     if right:
         return right 
-
     return None 
+    
+
 # this function builds a tree from input; you don't have to modify it
 # learn more about how trees are encoded in https://algo.monster/problems/serializing_tree
 def build_tree(nodes, f):

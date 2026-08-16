@@ -4,25 +4,24 @@ class Node:
         self.left = left
         self.right = right
 
-def insert_bst(bst: Node, val: int) -> Node:
-    # if bst is None:
-    #     return Node(val)
-    # if bst.val < val:
-    #     bst.right = insert_bst(bst.right,val)
-    # elif bst.val > val:
-    #     bst.left = insert_bst(bst.left,val)
-    # return bst        
+def insert_bst(bst: Node | None, val: int) -> Node:
     if bst is None:
         return Node(val)
 
-    if bst.val < val:
-        bst.right = insert_bst(bst.right,val)
-    elif bst.val > val:
-        bst.left = insert_bst(bst.left,val)
-    return bst
+    if val < bst.val:
+        bst.left = insert_bst(bst.left, val)
+    elif val > bst.val:
+        bst.right= insert_bst(bst.right, val)
 
-# this function builds a tree from input; you don't have to modify it
-# learn more about how trees are encoded in https://algo.monster/problems/serializing_tree
+    return bst 
+    # if bst is None:
+    #     return Node(val)
+    # if val > bst.val:
+    #     bst.right = insert_bst(bst.right, val)
+    # else:
+    #     bst.left = insert_bst(bst.left, val)
+    # return bst
+
 def build_tree(nodes, f):
     val = next(nodes)
     if val == "x":
@@ -37,8 +36,6 @@ def format_tree(node):
         return
     yield str(node.val)
     yield from format_tree(node.left)
-    yield from format_tree(node.right)
-
     yield from format_tree(node.right)
 
 

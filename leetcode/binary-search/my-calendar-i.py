@@ -35,30 +35,30 @@ class MyCalendar:
                 idx = mid
                 r = mid - 1
             else:
-                l = mid  + 1
+                l = mid + 1
 
-        if (idx > 0 and self.calendar[idx-1][1] > start) or (idx < len(self.calendar) and self.calendar[idx][0] < end):
-            return False
-        
+        if (idx > 0 and self.calendar[idx - 1][1] > start) or (idx < len(self.calendar) and self.calendar[idx][0] < end):
+            return False 
+
         self.calendar.insert(idx, (start,end))
-        return True
+        return True 
 
-        # left,right = 0, len(self.calendar) - 1
+        # l,r = 0, len(self.calendar) - 1
         # idx = len(self.calendar)
 
-        # while left <= right:
-        #     mid = (left + right) // 2
+        # while l <= r:
+        #     mid = (l + r) // 2
         #     if self.calendar[mid][0] > start:
         #         idx = mid
-        #         right = mid - 1
+        #         r = mid - 1
         #     else:
-        #         left = mid + 1
+        #         l = mid  + 1
+
         # if (idx > 0 and self.calendar[idx-1][1] > start) or (idx < len(self.calendar) and self.calendar[idx][0] < end):
         #     return False
-
+        
         # self.calendar.insert(idx, (start,end))
-        # return True 
-
+        # return True
 
 # --- Daily tests ---
 if __name__ == "__main__":

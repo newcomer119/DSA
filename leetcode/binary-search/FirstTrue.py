@@ -3,31 +3,19 @@
 
 
 def find_boundary(arr: list[bool]) -> int:
-    l,r = 0,len(arr) - 1
+   
+    l, r = 0,len(arr) - 1
     ans = -1
     while l <= r:
         mid = (l + r) // 2
-        if arr[mid] == True:
+        if arr[mid ] == True:
             ans = mid
             r = mid - 1
 
         else:
-            l = mid + 1
+            l = mid +  1
 
     return ans 
-
-    # l, r = 0, len(arr) - 1
-    # ans = -1
-    # while l <= r:
-    #     mid = (l + r) // 2
-    #     if arr[mid]:
-    #         ans = mid
-    #         r = mid - 1
-
-    #     else : 
-    #         l = mid + 1
-
-    # return ans
 
 
 # --- Daily tests ---

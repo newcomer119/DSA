@@ -11,13 +11,9 @@
 # Input: s = "aab"
 # Output: "aba"
 # Example 2:
-
 # Input: s = "aaab"
 # Output: ""
- 
-
 # Constraints:
-
 # 1 <= s.length <= 500
 # s consists of lowercase English letters.
 

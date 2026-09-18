@@ -16,49 +16,32 @@
 # 1 <= piles.length <= 104
 # piles.length <= h <= 109
 # 1 <= piles[i] <= 109
-
+import math
 from math import ceil,inf
 from typing import List
 
 def can_finish(piles,h,k):
+    if k == 0:
+        return 0
     hours = 0
     for p in piles:
-        hours += ceil(float(p)/k)
+        hours += math.ceil(float(p) / k) # this will give the value nearest to its coming integere for examples 23/15 = 2 
+
     return hours <= h
 
-
 def minEatingSpeed(piles , h):
-    l, r = 1 , 1000000000
+    l,r =0,max(piles)
     ans = -1
     while l <= r:
         mid = (l + r) // 2
-        if can_finish(piles,h,mid):
+        if can_finish(piles, h, mid):
             ans = mid
             r = mid - 1
+
         else:
             l = mid + 1
+
     return ans 
-
-# def can_finish(piles, h, k):
-#     hours = 0
-#     for p in piles:
-#         hours += ceil(float(p)/k)
-#     return hours <= h
-   
-# def minEatingSpeed(piles: List[int], h: int) -> int:
-#     left, right = 1, 1000000000
-#     ans = -1
-#     while left<=right:
-#         mid = (left + right) // 2
-#         if can_finish(piles, h, mid):
-#             ans = mid
-#             right = mid - 1
-
-#         else:
-#             left = mid + 1
-#     return ans
-
-
 
 # --- Daily tests ---
 if __name__ == "__main__":

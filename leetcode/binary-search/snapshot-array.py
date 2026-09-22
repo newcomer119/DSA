@@ -4,9 +4,7 @@
 # int snap() takes a snapshot of the array and returns the snap_id: the total number of times we called snap() minus 1.
 # int get(index, snap_id) returns the value at the given index, at the time we took the snapshot with the given snap_id
  
-
 # Example 1:
-
 # Input: ["SnapshotArray","set","snap","set","get"]
 # [[3],[0,5],[],[0,6],[0,0]]
 # Output: [null,null,0,null,5]
@@ -22,16 +20,11 @@ class SnapshotArray:
     def __init__(self, n: int):
         self.histories = [[[-1 ,0 ]] for _ in range(n)]
         self.snap_id = 0
-        # self.histories = [[[-1, 0]] for _ in range(n)]
-        # self.snap_id = 0
 
     def set(self, index: int, val: int) -> None:
-        # self.histories[index].append([self.snap_id, val])
         self.histories[index].append([self.snap_id, val])
 
     def snap(self) -> int:
-        # self.snap_id += 1
-        # return self.snap_id - 1
         self.snap_id += 1
         return self.snap_id - 1
 
@@ -39,9 +32,7 @@ class SnapshotArray:
     def get(self, index: int, snap_id: int) -> int:
         l = 0
         r = len(self.histories[index]) - 1
-
         ans = -1
-
         while l <= r:
             mid = (l + r) // 2
             if self.histories[index][mid][0] <= snap_id:
@@ -49,24 +40,7 @@ class SnapshotArray:
                 ans = mid
             else:
                 r = mid - 1
-
-
         return self.histories[index][ans][1]
-
-
-        # left = 0
-        # right = len(self.histories[index]) - 1
-        # pos = -1
-        # while left <= right:
-        #     mid = (left + right) // 2
-        #     if self.histories[index][mid][0] <= snap_id:
-        #         left = mid + 1
-        #         pos = mid
-
-        #     else:
-        #         right = mid - 1
-
-        # return self.histories[index][pos][1]
 
 
 # --- Daily tests ---

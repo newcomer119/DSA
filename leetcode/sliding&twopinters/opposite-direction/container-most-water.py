@@ -13,26 +13,16 @@
 def container_with_most_water(arr: list[int]) -> int:
     l,r = 0, len(arr) - 1
     max_area = 0
-    while l < r :
-        area = (r - l) * min(arr[l] ,arr[r])
-        max_area = max(area, max_area)
+    while l < r:
+        area = (r - l) * (min(arr[l], arr[r]))
+        max_area = max(max_area,area)
         if arr[l] < arr[r]:
             l += 1
         else:
-            r -= 1 
+            r -= 1
 
     return max_area
-    # l , r = 0 , len(arr) - 1
-    # max_area = 0
-    # while l <=r :
-    #     area = (r - l) * min(arr[l], arr[r])
-    #     max_area = max(area, max_area)
-    #     if arr[l] < arr[r]:
-    #         l += 1
-    #     else:
-    #         r-= 1
-
-    # return max_area
+   
 
 
 # --- Daily tests ---

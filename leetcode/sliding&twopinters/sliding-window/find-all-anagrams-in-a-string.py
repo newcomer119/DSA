@@ -24,38 +24,44 @@
 # 1 <= len(original), len(check) <= 10^5
 # Each string consists of only lowercase characters in the standard English alphabet.
 
-
-def find_all_anagrams(original: str, check: str) -> list[int]:
-    original_len = len(original)
-    check_len = len(check)
-
-    if original_len < check_len:
+def find_all_anagrams(s: str, p: str) -> list[int]:
+    if len(p) > len(s):
         return []
 
-    res = []
-    check_counter = [0] *  26
-    window = [0] * 26
-    a = ord("a")
+    pCount, sCount = {}, {}
 
-    for i in range(check_len):
-        check_counter[ord(check[i]) - a] += 1
-        window[ord(original[i]) - a] += 1
+    # Build frequency maps for p and first window of s
+    for i in range(len(p)):
+        pCount[p[i]] = pCount.get(p[i], 0) + 1
+        sCount[s[i]] = sCount.get(s[i], 0) + 1
 
-    if window == check_counter:
-        res.append(0)
+    res = [0] if sCount == pCount else []
 
-    for i in range(check_len, original_len):
-        window[ord(original[i - check_len]) - a] -= 1
-        window[ord(original[i]) - a] += 1
-        if window == check_counter:
-            res.append(i - check_len + 1)
+    l = 0
+
+    # Slide window through s
+    for r in range(len(p), len(s)):
+        # Add new character on right
+        sCount[s[r]] = sCount.get(s[r], 0) + 1
+
+        # Remove old character on left
+        sCount[s[l]] -= 1
+
+        if sCount[s[l]] == 0:
+            sCount.pop(s[l])
+
+        l += 1
+
+        if sCount == pCount:
+            res.append(l)
 
     return res
 
 
 # --- Daily tests ---
 if __name__ == "__main__":
-    TESTS = [("cbaebabacd", "abc", [0, 6]), ("abab", "ab", [0, 1, 2]), ("a", "aa", [])]
+    TESTS = [("cbaebabacd", "abc", [0, 6]),
+             ("abab", "ab", [0, 1, 2]), ("a", "aa", [])]
     passed = 0
     for orig, check, exp in TESTS:
         got = find_all_anagrams(orig, check)

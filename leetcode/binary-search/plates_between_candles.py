@@ -30,40 +30,38 @@ class Solution:
     def platesBetweenCandles(self, s: str, queries: List[List[int]]) -> List[int]:
         candles = []
         for i in range(len(s)):
-            if s[i] == '|':
+            if s[i] == '|': 
                 candles.append(i)
 
         res = []
-        for qleft, qright in queries:
-            left_pos, right_pos = -1, -1
-
-            # 1. Find the first candle index >= qleft
-            left, right = 0, len(candles) - 1
-            while left <= right:
-                mid = (left + right) // 2
+        for qleft,qright in queries:
+            left_pos , right_pos = -1,-1
+            l,r = 0, len(candles) - 1
+            while l <= r:
+                mid = (l + r) // 2
                 if candles[mid] >= qleft:
                     left_pos = mid
-                    right = mid - 1
-                else:
-                    left = mid + 1
+                    r = mid - 1
 
-            # 2. Find the last candle index <= qright
-            left, right = 0, len(candles) - 1
-            while left <= right:
-                mid = (left + right) // 2
+                else:
+                    l = mid + 1
+
+            l,r = 0 , len(candles) - 1
+            while l <= r:
+                mid = (l + r) // 2
                 if candles[mid] <= qright:
                     right_pos = mid
-                    left = mid + 1
-                else:
-                    right = mid - 1
+                    l = mid + 1
 
-            # Calculate result using the formula
+                else:
+                    r = mid - 1
+
             if left_pos != -1 and right_pos != -1 and right_pos > left_pos:
                 res.append((candles[right_pos] - candles[left_pos]) - (right_pos - left_pos))
             else:
                 res.append(0)
 
-        return res
+        return res 
 
 
 # --- Daily tests ---

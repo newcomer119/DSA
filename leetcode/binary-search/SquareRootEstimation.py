@@ -13,23 +13,13 @@
 
 
 def square_root(n: int) -> int:
-    # left , right = 0, n
-    # ans = -1
-    # while left <= right:
-    #     mid = (left + right) // 2
-    #     if mid * mid == n:
-    #         return mid
-    #     elif mid * mid  > n:
-    #         ans = mid
-    #         right = mid - 1
-    #     else:
-    #         left = mid + 1
-    # return ans - 1
 
-    l, r = 0, n
+
+    l,r = 0, n
     ans = -1
     while l <= r:
         mid = (l + r) // 2
+         
         if mid * mid == n:
             return mid
         elif mid * mid > n:

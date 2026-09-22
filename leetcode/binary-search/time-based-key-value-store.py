@@ -41,16 +41,15 @@
 
 
 class TimeMap(object):
-
     def __init__(self):
-        # self.histories = dict()
+        # self.histories = {}
         self.histories = {}
 
     def set(self, key, value, timestamp):
         if not key in self.histories:
             self.histories[key] = []
         self.histories[key].append([timestamp, value])
-
+        
     def get(self, key, timestamp):
         if not key in self.histories: return ""
         left, right, pos = 0, len(self.histories[key])-1, -1

@@ -45,31 +45,18 @@ def remove_nth_from_end(head, n):
     for _ in range(n):
         if fast.next is None:
             return head 
-
         fast = fast.next 
 
     slow = dummy 
-    while fast and fast.next:
-        fast = fast.next 
+    while fast and fast.next is not None:
+        fast = fast.next
         slow = slow.next 
-    slow.next = slow.next.next 
-    return dummy.next
-    # if head is None or n < 1:
-    #     return head 
-    # dummy = Node(0)
-    # dummy.next = head
-    # fast = dummy
-    # for _ in range(n):
-    #     if fast.next is None:
-    #         return head 
-    #     fast = fast.next
-    # slow = dummy
-    # while fast and fast.next:
-    #     fast = fast.next
-    #     slow = slow.next 
-    # slow.next = slow.next.next
-    # return dummy.next 
 
+    slow.next = slow.next.next 
+    return dummy.next 
+     
+
+    
 # --- Daily tests ---
 if __name__ == "__main__":
     def build_list(values):

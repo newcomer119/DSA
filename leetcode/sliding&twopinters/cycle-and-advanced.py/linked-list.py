@@ -23,30 +23,17 @@ class Node:
 def has_cycle(head: Node) -> bool:
     if not head or not head.next:
         return False 
-    tortoise = head 
-    hare = head 
-    while hare and hare.next:
-        tortoise = tortoise.next 
-        hare = hare.next.next
-        if tortoise == hare:
+
+    slow = head 
+    fast = head 
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next 
+        if slow == fast:
             return True 
 
     return False 
-    # If the list is empty or has only one node, there can be no cycle
-    # if not head or not head.next:
-    #     return False
-    # tortoise = head
-    # hare = head
-    # # Hare moves twice as fast as the tortoise
-    # while hare and hare.next:
-    #     tortoise = tortoise.next       # Move 1 step
-    #     hare = hare.next.next          # Move 2 steps
-    #     # If they meet, there is a cycle
-    #     if tortoise == hare:
-    #         return True
-    # # If hare reaches the end (None), there is no cycle
-    # return False
-
+    
 
 # --- Daily tests ---
 if __name__ == "__main__":

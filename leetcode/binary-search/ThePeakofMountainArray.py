@@ -27,6 +27,7 @@ def peak_of_mountain_array(arr: list[int]) -> int:
             l = mid + 1
 
     return ans 
+    
 
 
 

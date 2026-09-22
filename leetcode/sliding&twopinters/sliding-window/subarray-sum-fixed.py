@@ -5,7 +5,7 @@
 
 
 def subarray_sum_fixed(nums: list[int], k: int) -> int:    
-    wsum = 0
+    wsum = 0 
     for i in range(k):
         wsum += nums[i]
     largest = wsum
@@ -14,20 +14,11 @@ def subarray_sum_fixed(nums: list[int], k: int) -> int:
         left = right - k
         wsum -= nums[left]
         wsum += nums[right]
-        largest = max(wsum, largest)
 
-    return largest 
-    # window_sum = 0
-    # for i in range(k):
-    #     window_sum += nums[i]
-    # largest = window_sum
+        largest = max(largest, wsum)
 
-    # for right in range(k, len(nums)):
-    #     left = right - k
-    #     window_sum -= nums[left]
-    #     window_sum += nums[right]
-    #     largest = max(window_sum,largest)
-    # return largest
+    return largest
+    
 
 
 # --- Daily tests ---

@@ -2,27 +2,49 @@ from collections import deque
 
 def count_communication_groups(n, connections):
     adj = [[] for _ in range(n)]
-    for a, b in connections:
+    for a,b in connections:
         adj[a].append(b)
         adj[b].append(a)
 
-    visited = set()
+    visit  = set()
     groups = 0
 
     for node in range(n):
-        if node in visited:
-            continue
-        visited.add(node)
+        if node in visit:
+            continue 
+        visit.add(node)
         groups += 1
-        queue = deque([node])
+        queue =deque([node])
         while queue:
             curr = queue.popleft()
-            for neighbor in adj[curr]:
-                if neighbor not in visited:
-                    visited.add(neighbor)
-                    queue.append(neighbor)
+            for nei in adj[curr]:
+                if nei not in visit:
+                    visit.add(nei)
+                    queue.append(nei)
 
-    return groups   
+    return groups
+    # adj = [[] for _ in range(n)]
+    # for a, b in connections:
+    #     adj[a].append(b)
+    #     adj[b].append(a)
+
+    # visited = set()
+    # groups = 0
+
+    # for node in range(n):
+    #     if node in visited:
+    #         continue
+    #     visited.add(node)
+    #     groups += 1
+    #     queue = deque([node])
+    #     while queue:
+    #         curr = queue.popleft()
+    #         for neighbor in adj[curr]:
+    #             if neighbor not in visited:
+    #                 visited.add(neighbor)
+    #                 queue.append(neighbor)
+
+    # return groups   
 
 def run_tests():
 

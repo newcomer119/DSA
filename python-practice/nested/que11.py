@@ -1,11 +1,11 @@
 def common_values(list1: list[int], list2: list[int]) -> list[int]:
     res = []
+
     for i in range(len(list1)):
         if list1[i] in list2 and list1[i] not in res:
             res.append(list1[i])
 
-
-    return res 
+    return res
 
 def run_tests():
     tests = [

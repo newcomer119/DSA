@@ -73,19 +73,73 @@
 //     para.textContent = ""
 // })
 
-const celsius = document.getElementById("celsius")
-const convertBtn = document.getElementById("convertBtn")
-const resetBtn = document.getElementById("resetBtn")
-const result = document.getElementById("result")
-let farentheit =0 
-convertBtn.addEventListener("click", function(){
-    // f = (9/5) * C + 32
-    farentheit = ((9/5) * celsius.value) + 32
-    result.textContent = farentheit
-    
+// const celsius = document.getElementById("celsius")
+// const convertBtn = document.getElementById("convertBtn")
+// const resetBtn = document.getElementById("resetBtn")
+// const result = document.getElementById("result")
+// let farentheit =0 
+// convertBtn.addEventListener("click", function(){
+//     // f = (9/5) * C + 32
+//     farentheit = ((9/5) * celsius.value) + 32
+//     result.textContent = farentheit
+
+
+// })
+// resetBtn.addEventListener("click", function(){
+//     celsius.value = ""
+//     result.value = ""
+// })
+
+
+// const pageTitle = document.getElementById("pageTitle");
+// const pageContent = document.getElementById("pageContent");
+
+// const previousBtn = document.getElementById("previousBtn");
+// const nextBtn = document.getElementById("nextBtn");
+
+// let currentPage = 1;
+
+// // Complete the functionality
+
+// previousBtn.addEventListener("click", function(){
+//     currentPage--;
+//     pageContent.textContent = `Welcome to page ${currentPage}`
+// })
+
+// nextBtn.addEventListener("click", function(){
+//     currentPage++;
+//     pageContent.textContent = `Welcome to page ${currentPage}`
+// })
+
+
+const imageTitle = document.getElementById("imageTitle");
+const imageText = document.getElementById("imageText");
+
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+let currentImage = 1;
+
+prevBtn.addEventListener("click", function () {
+    if (currentImage > 1) {
+        currentImage--;
+        imageTitle.textContent = `Image ${currentImage}`
+        imageText.textContent = `Showing Image ${currentImage} of 4`
+    }
 
 })
-resetBtn.addEventListener("click", function(){
-    celsius.value = ""
-    result.value = ""
+
+nextBtn.addEventListener("click", function () {
+    if (currentImage < 4) {
+        currentImage++;
+        imageTitle.textContent = `Image ${currentImage}`
+        imageText.textContent = `Showing Image ${currentImage} of 4`
+    }
+    if(currentImage == 4){
+        imageTitle.textContent = `Image 4`
+        imageText.textContent = `Showing Image 4 out of 4`
+    }
+
 })
+
+// Write your code
